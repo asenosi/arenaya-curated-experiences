@@ -45,6 +45,10 @@ All colors MUST be HSL.
     --gold: 38 36% 58%;
     --sand: 33 29% 94%;
     --ivory: 50 57% 99%;
+    
+    /* Interactive Hover Colors */
+    --royal-navy: 210 60% 20%;
+    --rich-gold: 43 60% 58%;
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
