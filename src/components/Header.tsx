@@ -42,7 +42,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl lg:text-3xl font-heading font-bold text-primary tracking-tight transition-colors group-hover:text-secondary">
+            <div className="text-2xl lg:text-3xl font-heading font-bold text-royal-navy tracking-tight transition-all duration-300 group-hover:text-rich-gold group-hover:scale-105">
               Arenaya
             </div>
           </Link>
@@ -54,10 +54,10 @@ export default function Header() {
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium transition-colors rounded-md",
+                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group",
                   location.pathname === item.href
-                    ? "text-primary bg-secondary/10"
-                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
+                    ? "text-royal-navy bg-rich-gold/10 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-rich-gold after:scale-x-100"
+                    : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-royal-navy after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left active:scale-95"
                 )}
               >
                 {item.name}
@@ -66,7 +66,7 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <Button asChild variant="default" size="default" className="bg-primary hover:bg-primary/90">
+            <Button asChild variant="default" size="default" className="bg-royal-navy hover:bg-rich-gold hover:scale-105 transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
               <Link to="/contact">Request a Quote</Link>
             </Button>
           </div>
@@ -74,7 +74,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="lg:hidden p-2 text-foreground hover:text-royal-navy transition-all duration-300 hover:scale-110 active:scale-95"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle menu"
@@ -92,17 +92,17 @@ export default function Header() {
                   key={item.name}
                   to={item.href}
                   className={cn(
-                    "block px-4 py-3 text-base font-medium rounded-md transition-colors",
+                    "block px-4 py-3 text-base font-medium rounded-md transition-all duration-300 active:scale-95",
                     location.pathname === item.href
-                      ? "text-primary bg-secondary/10"
-                      : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
+                      ? "text-royal-navy bg-rich-gold/10 border-l-4 border-rich-gold"
+                      : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 hover:border-l-4 hover:border-royal-navy border-l-4 border-transparent"
                   )}
                 >
                   {item.name}
                 </Link>
               ))}
               <div className="pt-4">
-                <Button asChild variant="default" size="lg" className="w-full bg-primary hover:bg-primary/90">
+                <Button asChild variant="default" size="lg" className="w-full bg-royal-navy hover:bg-rich-gold transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
                   <Link to="/contact">Request a Quote</Link>
                 </Button>
               </div>
