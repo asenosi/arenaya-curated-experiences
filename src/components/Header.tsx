@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
         scrolled ? "bg-card/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
@@ -85,7 +85,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-[60] overflow-y-auto animate-fade-up">
+          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-[110] overflow-y-auto animate-fade-up">
             <div className="container mx-auto px-4 py-8 space-y-2">
               {navigation.map((item) => (
                 <Link
