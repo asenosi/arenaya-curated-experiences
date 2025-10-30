@@ -85,7 +85,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-50 overflow-y-auto animate-fade-up">
+          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-[60] overflow-y-auto animate-fade-up">
             <div className="container mx-auto px-4 py-8 space-y-2">
               {navigation.map((item) => (
                 <Link
