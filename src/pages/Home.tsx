@@ -6,8 +6,7 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { cn } from "@/lib/utils";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const valuePillars = [
   {
@@ -126,12 +125,6 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const valuePillarsAnim = useScrollAnimation();
-  const industriesAnim = useScrollAnimation();
-  const packagesAnim = useScrollAnimation();
-  const processAnim = useScrollAnimation();
-  const testimonialsAnim = useScrollAnimation();
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -168,21 +161,17 @@ export default function Home() {
       {/* Value Pillars */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
-          <div 
-            ref={valuePillarsAnim.elementRef}
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 transition-all duration-700",
-              valuePillarsAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
-            )}
-          >
-            {valuePillars.map((pillar) => (
-              <div key={pillar.title} className="text-center space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {valuePillars.map((pillar, index) => (
+              <ScrollReveal key={pillar.title} delay={index * 100}>
+                <div className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10">
                   <pillar.icon className="w-8 h-8 text-secondary" />
                 </div>
                 <h3 className="text-2xl font-heading font-semibold text-foreground">{pillar.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -200,15 +189,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div 
-            ref={industriesAnim.elementRef}
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
-              industriesAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
-            )}
-          >
-            {industries.map((industry) => (
-              <Link key={industry.title} to={industry.href}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {industries.map((industry, index) => (
+              <ScrollReveal key={industry.title} delay={index * 100}>
+                <Link to={industry.href}>
                 <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
                   <CardContent className="p-6 lg:p-8 space-y-4">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10">
@@ -221,6 +205,7 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -238,15 +223,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div 
-            ref={packagesAnim.elementRef}
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
-              packagesAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
-            )}
-          >
-            {featuredPackages.map((pkg) => (
-              <Card key={pkg.title} className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {featuredPackages.map((pkg, index) => (
+              <ScrollReveal key={pkg.title} delay={index * 150}>
+                <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 <div className="aspect-square overflow-hidden">
                   <img
                     src={pkg.image}
@@ -265,6 +245,7 @@ export default function Home() {
                   </Button>
                 </CardContent>
               </Card>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -282,21 +263,17 @@ export default function Home() {
             </p>
           </div>
 
-          <div 
-            ref={processAnim.elementRef}
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-700",
-              processAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
-            )}
-          >
-            {processSteps.map((step) => (
-              <div key={step.number} className="text-center space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <ScrollReveal key={step.number} delay={index * 100}>
+                <div className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground text-2xl font-bold font-heading">
                   {step.number}
                 </div>
                 <h3 className="text-xl font-heading font-semibold text-foreground">{step.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -311,15 +288,10 @@ export default function Home() {
             </h2>
           </div>
 
-          <div 
-            ref={testimonialsAnim.elementRef}
-            className={cn(
-              "grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
-              testimonialsAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
-            )}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-background">
+              <ScrollReveal key={index} delay={index * 150}>
+                <Card className="bg-background">
                 <CardContent className="p-6 lg:p-8 space-y-4">
                   <p className="text-muted-foreground italic leading-relaxed">
                     "{testimonial.quote}"
@@ -330,6 +302,7 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
+              </ScrollReveal>
             ))}
           </div>
         </div>
