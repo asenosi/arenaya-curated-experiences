@@ -6,6 +6,8 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { cn } from "@/lib/utils";
 
 const valuePillars = [
   {
@@ -124,6 +126,12 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const valuePillarsAnim = useScrollAnimation();
+  const industriesAnim = useScrollAnimation();
+  const packagesAnim = useScrollAnimation();
+  const processAnim = useScrollAnimation();
+  const testimonialsAnim = useScrollAnimation();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -160,7 +168,13 @@ export default function Home() {
       {/* Value Pillars */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 stagger-children">
+          <div 
+            ref={valuePillarsAnim.elementRef}
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 transition-all duration-700",
+              valuePillarsAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
+            )}
+          >
             {valuePillars.map((pillar) => (
               <div key={pillar.title} className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10">
@@ -186,7 +200,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+          <div 
+            ref={industriesAnim.elementRef}
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
+              industriesAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
+            )}
+          >
             {industries.map((industry) => (
               <Link key={industry.title} to={industry.href}>
                 <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
@@ -218,7 +238,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+          <div 
+            ref={packagesAnim.elementRef}
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
+              packagesAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
+            )}
+          >
             {featuredPackages.map((pkg) => (
               <Card key={pkg.title} className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 <div className="aspect-square overflow-hidden">
@@ -256,7 +282,13 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+          <div 
+            ref={processAnim.elementRef}
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-700",
+              processAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
+            )}
+          >
             {processSteps.map((step) => (
               <div key={step.number} className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground text-2xl font-bold font-heading">
@@ -279,7 +311,13 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+          <div 
+            ref={testimonialsAnim.elementRef}
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700",
+              testimonialsAnim.isVisible ? "opacity-100 translate-y-0 stagger-children" : "opacity-0 translate-y-8"
+            )}
+          >
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="bg-background">
                 <CardContent className="p-6 lg:p-8 space-y-4">
