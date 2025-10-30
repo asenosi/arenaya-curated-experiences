@@ -83,33 +83,34 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-[110] overflow-y-auto animate-fade-up">
-            <div className="container mx-auto px-4 py-8 space-y-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "block px-4 py-3 text-base font-medium rounded-md transition-all duration-300 active:scale-95",
-                    location.pathname === item.href
-                      ? "text-royal-navy bg-rich-gold/10 border-l-4 border-rich-gold"
-                      : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 hover:border-l-4 hover:border-royal-navy border-l-4 border-transparent"
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4">
-                <Button asChild variant="default" size="lg" className="w-full bg-royal-navy hover:bg-rich-gold transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
-                  <Link to="/contact">Request a Quote</Link>
-                </Button>
-              </div>
+      </nav>
+
+      {/* Mobile menu - Outside nav for proper z-index stacking */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md overflow-y-auto animate-fade-up">
+          <div className="container mx-auto px-4 py-8 space-y-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={cn(
+                  "block px-4 py-3 text-base font-medium rounded-md transition-all duration-300 active:scale-95",
+                  location.pathname === item.href
+                    ? "text-royal-navy bg-rich-gold/10 border-l-4 border-rich-gold"
+                    : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 hover:border-l-4 hover:border-royal-navy border-l-4 border-transparent"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="pt-4">
+              <Button asChild variant="default" size="lg" className="w-full bg-royal-navy hover:bg-rich-gold transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
+                <Link to="/contact">Request a Quote</Link>
+              </Button>
             </div>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
   );
 }
