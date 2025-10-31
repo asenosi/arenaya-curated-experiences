@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon } from "lucide-react";
+import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
@@ -201,8 +201,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {industries.map((industry, index) => (
-              <ScrollReveal 
-                key={industry.title} 
+              <ScrollReveal
+                key={industry.title}
                 delay={index * 150}
                 direction={index % 2 === 0 ? "left" : "right"}
               >
@@ -210,20 +210,20 @@ export default function Home() {
                 <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-border/50 hover:border-primary/40">
                   <div className="relative h-full min-h-[280px] sm:min-h-[320px]">
                     {/* Background Image */}
-                    <div 
+                    <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                       style={{ backgroundImage: `url(${industry.image})` }}
                     />
-                    
+
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80 group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/90 transition-all duration-300" />
-                    
+
                     {/* Content */}
                     <CardContent className="relative h-full p-5 md:p-6 lg:p-7 flex flex-col justify-between">
                       <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white/10 backdrop-blur-sm group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 border border-white/20">
                         <industry.icon className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:text-primary-foreground" />
                       </div>
-                      
+
                       <div className="space-y-2 md:space-y-3">
                         <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-white group-hover:text-primary-foreground transition-colors">
                           {industry.title}
