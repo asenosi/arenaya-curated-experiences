@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
@@ -70,6 +71,7 @@ const services = [
 
 export default function Services() {
   const location = useLocation();
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
     if (location.hash) {
@@ -82,6 +84,39 @@ export default function Services() {
       }
     }
   }, [location]);
+
+  // Scroll spy for sticky sub-nav
+  useEffect(() => {
+    const sectionIds = services.map((s) => s.id);
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          const currentId = visible[0].target.id;
+          setActiveId(currentId);
+          try {
+            window.history.replaceState(null, "", `#${currentId}`);
+          } catch {}
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-140px 0px -60% 0px",
+        threshold: [0.2, 0.4, 0.6, 0.8],
+      }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
@@ -100,14 +135,22 @@ export default function Services() {
       </section>
 
       {/* Sticky Sub-Nav */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border">
+      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex overflow-x-auto py-4 space-x-2 lg:space-x-4 scrollbar-hide">
+          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
             {services.map((service) => (
               <a
                 key={service.id}
                 href={`#${service.id}`}
-                className="flex-shrink-0 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-secondary/5 rounded-md transition-colors"
+                className={cn(
+                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative",
+                  activeId === service.id
+                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
+                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5",
+                  // Desktop: make item fill full bar height and remove rounding
+                  "lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none"
+                )}
+                aria-current={activeId === service.id ? "page" : undefined}
               >
                 {service.title}
               </a>

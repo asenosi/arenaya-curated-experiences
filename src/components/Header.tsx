@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
         scrolled ? "bg-card/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
@@ -54,11 +54,12 @@ export default function Header() {
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group",
+                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group lg:h-20 lg:flex lg:items-center lg:px-6 lg:rounded-none",
                   location.pathname === item.href
-                    ? "text-royal-navy bg-rich-gold/10 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-rich-gold after:scale-x-100"
+                    ? "bg-royal-navy text-white font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-rich-gold after:scale-x-100"
                     : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-royal-navy after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left active:scale-95"
                 )}
+                aria-current={location.pathname === item.href ? "page" : undefined}
               >
                 {item.name}
               </Link>
@@ -83,33 +84,34 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md z-50 overflow-y-auto animate-fade-up">
-            <div className="container mx-auto px-4 py-8 space-y-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "block px-4 py-3 text-base font-medium rounded-md transition-all duration-300 active:scale-95",
-                    location.pathname === item.href
-                      ? "text-royal-navy bg-rich-gold/10 border-l-4 border-rich-gold"
-                      : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 hover:border-l-4 hover:border-royal-navy border-l-4 border-transparent"
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4">
-                <Button asChild variant="default" size="lg" className="w-full bg-royal-navy hover:bg-rich-gold transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
-                  <Link to="/contact">Request a Quote</Link>
-                </Button>
-              </div>
+      </nav>
+
+      {/* Mobile menu - Outside nav for proper z-index stacking */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-16 bg-card/98 backdrop-blur-md overflow-y-auto animate-fade-up">
+          <div className="container mx-auto px-4 py-8 space-y-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={cn(
+                  "block px-4 py-3 text-base font-medium rounded-md transition-all duration-300 active:scale-95",
+                  location.pathname === item.href
+                    ? "text-royal-navy bg-rich-gold/10 border-l-4 border-rich-gold"
+                    : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 hover:border-l-4 hover:border-royal-navy border-l-4 border-transparent"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="pt-4">
+              <Button asChild variant="default" size="lg" className="w-full bg-royal-navy hover:bg-rich-gold transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg">
+                <Link to="/contact">Request a Quote</Link>
+              </Button>
             </div>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
   );
 }
