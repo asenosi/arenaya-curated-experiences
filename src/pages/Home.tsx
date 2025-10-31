@@ -201,7 +201,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {industries.map((industry, index) => (
-              <ScrollReveal key={industry.title} delay={index * 100}>
+              <ScrollReveal 
+                key={industry.title} 
+                delay={index * 150}
+                direction={index % 2 === 0 ? "left" : "right"}
+              >
                 <Link to={industry.href} className="block h-full group">
                 <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-border/50 hover:border-primary/40">
                   <div className="relative h-full min-h-[280px] sm:min-h-[320px]">
