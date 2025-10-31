@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon } from "lucide-react";
+import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
@@ -192,19 +192,29 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {industries.map((industry, index) => (
               <ScrollReveal key={industry.title} delay={index * 100}>
-                <Link to={industry.href}>
-                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
-                  <CardContent className="p-6 lg:p-8 space-y-4">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10">
-                      <industry.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold text-foreground">
-                      {industry.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">{industry.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
+                <Link to={industry.href} className="block h-full">
+                  <Card
+                    className="group relative h-full overflow-hidden cursor-pointer transition-all duration-500 border border-transparent hover:-translate-y-1 hover:shadow-2xl hover:border-rich-gold/50 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 hover:after:w-full after:bg-rich-gold after:transition-[width] after:duration-500"
+                  >
+                    <div className="pointer-events-none absolute -right-10 -top-10 w-36 h-36 rounded-full bg-rich-gold/0 blur-2xl transition-colors duration-500 group-hover:bg-rich-gold/15" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-rich-gold/0 to-royal-navy/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <CardContent className="relative p-6 lg:p-8 space-y-4">
+                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-royal-navy/5 ring-1 ring-royal-navy/10 group-hover:bg-rich-gold/20 group-hover:ring-rich-gold/40 transition-all duration-500">
+                        <industry.icon className="w-7 h-7 text-royal-navy group-hover:text-royal-navy transition-colors duration-500" />
+                      </div>
+                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
+                        {industry.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                        {industry.description}
+                      </p>
+                      <div className="flex items-center gap-2 pt-2 text-royal-navy font-medium opacity-90 group-hover:opacity-100 transition-opacity">
+                        <span>Explore</span>
+                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
