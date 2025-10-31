@@ -77,9 +77,25 @@ export default function Process() {
 
   useEffect(() => {
     const els = sections
-      .map((s) => document.getElementById(s.id))
-      .filter((el): el is HTMLElement => !!el);
+      .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
+      .filter((x): x is { id: string; el: HTMLElement } => !!x.el);
     if (els.length === 0) return;
+
+    // Ensure a sensible default selection
+    if (!activeId) setActiveId(els[0].id);
+
+    const pickClosest = () => {
+      const headerOffset = 120;
+      let best: { id: string; dist: number } | null = null;
+      els.forEach(({ id, el }) => {
+        const top = el.getBoundingClientRect().top - headerOffset;
+        // prefer the section whose top is nearest to header (<=0 means passed the header)
+        const dist = top <= 0 ? Math.abs(top) : top + 1000; // bias toward sections already reached
+        if (!best || dist < best.dist) best = { id, dist };
+      });
+      if (best) setActiveId(best.id);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -91,12 +107,23 @@ export default function Process() {
           try {
             window.history.replaceState(null, "", `#${id}`);
           } catch {}
+        } else {
+          // Fallback when nothing meets threshold (e.g., first section)
+          pickClosest();
         }
       },
-      { rootMargin: "-140px 0px -60% 0px", threshold: [0.2, 0.4, 0.6, 0.8] }
+      { rootMargin: "-100px 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
     );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    els.forEach(({ el }) => observer.observe(el));
+
+    // Also update on scroll for robustness
+    const onScroll = () => pickClosest();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (

@@ -70,9 +70,23 @@ export default function About() {
 
   useEffect(() => {
     const els = sections
-      .map((s) => document.getElementById(s.id))
-      .filter((el): el is HTMLElement => !!el);
+      .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
+      .filter((x): x is { id: string; el: HTMLElement } => !!x.el);
     if (els.length === 0) return;
+
+    if (!activeId) setActiveId(els[0].id);
+
+    const pickClosest = () => {
+      const headerOffset = 120;
+      let best: { id: string; dist: number } | null = null;
+      els.forEach(({ id, el }) => {
+        const top = el.getBoundingClientRect().top - headerOffset;
+        const dist = top <= 0 ? Math.abs(top) : top + 1000;
+        if (!best || dist < best.dist) best = { id, dist };
+      });
+      if (best) setActiveId(best.id);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -84,12 +98,21 @@ export default function About() {
           try {
             window.history.replaceState(null, "", `#${id}`);
           } catch {}
+        } else {
+          pickClosest();
         }
       },
-      { rootMargin: "-140px 0px -60% 0px", threshold: [0.2, 0.4, 0.6, 0.8] }
+      { rootMargin: "-100px 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
     );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    els.forEach(({ el }) => observer.observe(el));
+
+    const onScroll = () => pickClosest();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
