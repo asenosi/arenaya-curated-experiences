@@ -54,11 +54,12 @@ export default function Header() {
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group",
+                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group lg:h-20 lg:flex lg:items-center lg:px-6 lg:rounded-none",
                   location.pathname === item.href
-                    ? "text-royal-navy bg-rich-gold/10 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-rich-gold after:scale-x-100"
+                    ? "bg-royal-navy text-white font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-rich-gold after:scale-x-100"
                     : "text-foreground/80 hover:text-royal-navy hover:bg-rich-gold/5 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-royal-navy after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left active:scale-95"
                 )}
+                aria-current={location.pathname === item.href ? "page" : undefined}
               >
                 {item.name}
               </Link>
