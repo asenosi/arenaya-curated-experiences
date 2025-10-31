@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
 
@@ -40,6 +43,51 @@ const whyArenaya = [
 ];
 
 export default function About() {
+  const location = useLocation();
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const sections = [
+    { id: "story", title: "Our Story" },
+    { id: "values", title: "Values" },
+    { id: "why", title: "Why Arenaya" },
+    { id: "founder", title: "Founder Note" },
+  ] as const;
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => !!el);
+    if (els.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          const id = visible[0].target.id;
+          setActiveId(id);
+          try {
+            window.history.replaceState(null, "", `#${id}`);
+          } catch {}
+        }
+      },
+      { rootMargin: "-140px 0px -60% 0px", threshold: [0.2, 0.4, 0.6, 0.8] }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
@@ -59,8 +107,41 @@ export default function About() {
         </div>
       </section>
 
+      {/* Sticky Sub-Nav */}
+      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className={cn(
+                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none",
+                  activeId === s.id
+                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
+                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
+                )}
+                aria-current={activeId === s.id ? "page" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById(s.id);
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    try {
+                      window.history.replaceState(null, "", `#${s.id}`);
+                    } catch {}
+                  }
+                }}
+              >
+                {s.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       {/* Brand Story */}
-      <section className="py-16 lg:py-24">
+      <section id="story" className="py-16 lg:py-24 scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="space-y-6 animate-fade-up">
@@ -100,7 +181,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-16 lg:py-24 bg-card">
+      <section id="values" className="py-16 lg:py-24 bg-card scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4 hover:text-royal-navy transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-rich-gold after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
@@ -136,7 +217,7 @@ export default function About() {
       </section>
 
       {/* Why Arenaya */}
-      <section className="py-16 lg:py-24">
+      <section id="why" className="py-16 lg:py-24 scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -172,7 +253,7 @@ export default function About() {
       </section>
 
       {/* Founder Note */}
-      <section className="py-16 lg:py-24 bg-muted/30">
+      <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <Card className="group bg-gradient-to-br from-card via-accent/5 to-card hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/40 transition-all duration-700 cursor-pointer relative overflow-hidden">

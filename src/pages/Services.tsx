@@ -151,6 +151,16 @@ export default function Services() {
                   "lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none"
                 )}
                 aria-current={activeId === service.id ? "page" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById(service.id);
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    try {
+                      window.history.replaceState(null, "", `#${service.id}`);
+                    } catch {}
+                  }
+                }}
               >
                 {service.title}
               </a>

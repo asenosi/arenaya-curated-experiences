@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { FileText, Leaf } from "lucide-react";
 
@@ -50,6 +53,52 @@ const processSteps = [
 ];
 
 export default function Process() {
+  const location = useLocation();
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const sections = [
+    { id: "steps", title: "Steps" },
+    { id: "packaging", title: "Packaging" },
+    { id: "sustainability", title: "Sustainability" },
+    { id: "timeline", title: "Timeline" },
+  ] as const;
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => !!el);
+    if (els.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          const id = visible[0].target.id;
+          setActiveId(id);
+          try {
+            window.history.replaceState(null, "", `#${id}`);
+          } catch {}
+        }
+      },
+      { rootMargin: "-140px 0px -60% 0px", threshold: [0.2, 0.4, 0.6, 0.8] }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
@@ -66,8 +115,41 @@ export default function Process() {
         </div>
       </section>
 
+      {/* Sticky Sub-Nav */}
+      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className={cn(
+                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none",
+                  activeId === s.id
+                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
+                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
+                )}
+                aria-current={activeId === s.id ? "page" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById(s.id);
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    try {
+                      window.history.replaceState(null, "", `#${s.id}`);
+                    } catch {}
+                  }
+                }}
+              >
+                {s.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       {/* Process Steps */}
-      <section className="py-16 lg:py-24">
+      <section id="steps" className="py-16 lg:py-24 scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-16">
             {processSteps.map((step, index) => (
@@ -111,7 +193,7 @@ export default function Process() {
       </section>
 
       {/* Packaging Selection */}
-      <section className="py-16 lg:py-24 bg-card">
+      <section id="packaging" className="py-16 lg:py-24 bg-card scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-4">
@@ -154,7 +236,7 @@ export default function Process() {
       </section>
 
       {/* Sustainability */}
-      <section className="py-16 lg:py-24">
+      <section id="sustainability" className="py-16 lg:py-24 scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Card className="bg-muted/30 border-2 border-secondary/20">
@@ -176,7 +258,7 @@ export default function Process() {
       </section>
 
       {/* Timeline & Download */}
-      <section className="py-16 lg:py-24 bg-card">
+      <section id="timeline" className="py-16 lg:py-24 bg-card scroll-mt-32">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="space-y-4">
