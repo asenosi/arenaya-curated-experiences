@@ -2,24 +2,27 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Sparkles } from "lucide-react";
+import { Award, ShieldCheck, Palette } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
 
 const values = [
   {
-    icon: Sparkles,
+    icon: Award,
     title: "Excellence",
-    description: "We obsess over details from concept to delivery. Every ribbon, every embossed logo, every package is crafted with meticulous attention to quality and presentation.",
+    description:
+      "We obsess over details from concept to delivery. Every ribbon, every embossed logo, every package is crafted with meticulous attention to quality and presentation.",
   },
   {
-    icon: Sparkles,
+    icon: ShieldCheck,
     title: "Integrity",
-    description: "Honest lead times, quality materials, fair pricing. We build lasting partnerships by being transparent, reliable, and committed to delivering exactly what we promise.",
+    description:
+      "Honest lead times, quality materials, fair pricing. We build lasting partnerships by being transparent, reliable, and committed to delivering exactly what we promise.",
   },
   {
-    icon: Sparkles,
+    icon: Palette,
     title: "Creativity",
-    description: "Design-led curation that tells your brand story. We don't just source products—we create experiences that resonate with recipients and reflect your values.",
+    description:
+      "Design-led curation that tells your brand story. We don't just source products—we create experiences that resonate with recipients and reflect your values.",
   },
 ];
 
@@ -198,10 +201,10 @@ export default function About() {
                 key={value.title} 
                 className="group border-2 border-secondary/20 bg-gradient-to-br from-card via-card to-accent/5 hover:shadow-xl hover:-translate-y-2 hover:border-rich-gold/40 transition-all duration-500 cursor-pointer overflow-hidden relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-royal-navy/0 via-royal-navy/0 to-rich-gold/0 group-hover:from-royal-navy/5 group-hover:to-rich-gold/5 transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-rich-gold/5 to-rich-gold/10 group-hover:via-rich-gold/10 group-hover:to-rich-gold/20 transition-all duration-500" />
                 <CardContent className="p-8 text-center space-y-4 relative z-10">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 group-hover:bg-rich-gold/20 group-hover:scale-110 transition-all duration-500">
-                    <value.icon className="w-8 h-8 text-secondary group-hover:text-rich-gold transition-colors duration-500" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 group-hover:bg-rich-gold/25 group-hover:scale-110 transition-all duration-500">
+                    <value.icon className="w-8 h-8 text-secondary group-hover:text-royal-navy transition-colors duration-500" />
                   </div>
                   <h3 className="text-2xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
                     {value.title}
