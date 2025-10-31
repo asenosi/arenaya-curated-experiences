@@ -78,7 +78,7 @@ export default function Process() {
   useEffect(() => {
     const els = sections
       .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
-      .filter((x): x is { id: string; el: HTMLElement } => !!x.el);
+      .filter((x): x is { id: typeof sections[number]['id']; el: HTMLElement } => !!x.el);
     if (els.length === 0) return;
 
     // Ensure a sensible default selection

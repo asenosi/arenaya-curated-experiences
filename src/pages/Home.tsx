@@ -6,6 +6,11 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import industryRealEstate from "@/assets/industry-real-estate.jpg";
+import industryDealership from "@/assets/industry-dealership.jpg";
+import industryCorporate from "@/assets/industry-corporate.jpg";
+import industryApparel from "@/assets/industry-apparel.jpg";
+import industryOffice from "@/assets/industry-office.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const valuePillars = [
@@ -32,30 +37,35 @@ const industries = [
     title: "Real Estate Gifting",
     description: "Keys, champagne, and welcome sets that win hearts.",
     href: "/services#real-estate",
+    image: industryRealEstate,
   },
   {
     icon: Car,
     title: "Dealership Gifting",
     description: "Handovers that feel premium and memorable.",
     href: "/services#dealership",
+    image: industryDealership,
   },
   {
     icon: Briefcase,
     title: "Corporate Essentials",
     description: "Diaries, notebooks, pens, mugs—beautifully branded.",
     href: "/services#corporate",
+    image: industryCorporate,
   },
   {
     icon: Shirt,
     title: "Branded Apparel",
     description: "Golf shirts, caps, jackets, event wear.",
     href: "/services#apparel",
+    image: industryApparel,
   },
   {
     icon: Building2,
     title: "Office Launch Kits",
     description: "Celebrate new spaces with style.",
     href: "/services#office-launch",
+    image: industryOffice,
   },
 ];
 
@@ -189,32 +199,41 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {industries.map((industry, index) => (
-              <ScrollReveal key={industry.title} delay={index * 100}>
-                <Link to={industry.href} className="block h-full">
-                  <Card
-                    className="group relative h-full overflow-hidden cursor-pointer transition-all duration-500 border border-transparent hover:-translate-y-1 hover:shadow-2xl hover:border-rich-gold/50 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 hover:after:w-full after:bg-rich-gold after:transition-[width] after:duration-500"
-                  >
-                    <div className="pointer-events-none absolute -right-10 -top-10 w-36 h-36 rounded-full bg-rich-gold/0 blur-2xl transition-colors duration-500 group-hover:bg-rich-gold/15" />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-rich-gold/0 to-royal-navy/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <CardContent className="relative p-6 lg:p-8 space-y-4">
-                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-royal-navy/5 ring-1 ring-royal-navy/10 group-hover:bg-rich-gold/20 group-hover:ring-rich-gold/40 transition-all duration-500">
-                        <industry.icon className="w-7 h-7 text-royal-navy group-hover:text-royal-navy transition-colors duration-500" />
+              <ScrollReveal
+                key={industry.title}
+                delay={index * 150}
+                direction={index % 2 === 0 ? "left" : "right"}
+              >
+                <Link to={industry.href} className="block h-full group">
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-border/50 hover:border-primary/40">
+                  <div className="relative h-full min-h-[280px] sm:min-h-[320px]">
+                    {/* Background Image */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${industry.image})` }}
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80 group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/90 transition-all duration-300" />
+
+                    {/* Content */}
+                    <CardContent className="relative h-full p-5 md:p-6 lg:p-7 flex flex-col justify-between">
+                      <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white/10 backdrop-blur-sm group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 border border-white/20">
+                        <industry.icon className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:text-primary-foreground" />
                       </div>
-                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
-                        {industry.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                        {industry.description}
-                      </p>
-                      <div className="flex items-center gap-2 pt-2 text-royal-navy font-medium opacity-90 group-hover:opacity-100 transition-opacity">
-                        <span>Explore</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+
+                      <div className="space-y-2 md:space-y-3">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-white group-hover:text-primary-foreground transition-colors">
+                          {industry.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-white/90 leading-relaxed">{industry.description}</p>
                       </div>
                     </CardContent>
-                  </Card>
-                </Link>
+                  </div>
+                </Card>
+              </Link>
               </ScrollReveal>
             ))}
           </div>
