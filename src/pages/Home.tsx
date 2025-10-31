@@ -6,6 +6,11 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import industryRealEstate from "@/assets/industry-real-estate.jpg";
+import industryDealership from "@/assets/industry-dealership.jpg";
+import industryCorporate from "@/assets/industry-corporate.jpg";
+import industryApparel from "@/assets/industry-apparel.jpg";
+import industryOffice from "@/assets/industry-office.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const valuePillars = [
@@ -32,30 +37,35 @@ const industries = [
     title: "Real Estate Gifting",
     description: "Keys, champagne, and welcome sets that win hearts.",
     href: "/services#real-estate",
+    image: industryRealEstate,
   },
   {
     icon: Car,
     title: "Dealership Gifting",
     description: "Handovers that feel premium and memorable.",
     href: "/services#dealership",
+    image: industryDealership,
   },
   {
     icon: Briefcase,
     title: "Corporate Essentials",
     description: "Diaries, notebooks, pens, mugs—beautifully branded.",
     href: "/services#corporate",
+    image: industryCorporate,
   },
   {
     icon: Shirt,
     title: "Branded Apparel",
     description: "Golf shirts, caps, jackets, event wear.",
     href: "/services#apparel",
+    image: industryApparel,
   },
   {
     icon: Building2,
     title: "Office Launch Kits",
     description: "Celebrate new spaces with style.",
     href: "/services#office-launch",
+    image: industryOffice,
   },
 ];
 
@@ -192,19 +202,32 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {industries.map((industry, index) => (
               <ScrollReveal key={industry.title} delay={index * 100}>
-                <Link to={industry.href} className="block h-full">
-                <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group border-border/50 hover:border-primary/30">
-                  <CardContent className="p-5 md:p-6 lg:p-7 flex flex-col h-full space-y-3 md:space-y-4">
-                    <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <industry.icon className="w-7 h-7 md:w-8 md:h-8 text-primary" />
-                    </div>
-                    <div className="flex-1 space-y-2">
-                      <h3 className="text-lg md:text-xl font-heading font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {industry.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{industry.description}</p>
-                    </div>
-                  </CardContent>
+                <Link to={industry.href} className="block h-full group">
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-border/50 hover:border-primary/40">
+                  <div className="relative h-full min-h-[280px] sm:min-h-[320px]">
+                    {/* Background Image */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${industry.image})` }}
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80 group-hover:from-black/50 group-hover:via-black/60 group-hover:to-black/90 transition-all duration-300" />
+                    
+                    {/* Content */}
+                    <CardContent className="relative h-full p-5 md:p-6 lg:p-7 flex flex-col justify-between">
+                      <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white/10 backdrop-blur-sm group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 border border-white/20">
+                        <industry.icon className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:text-primary-foreground" />
+                      </div>
+                      
+                      <div className="space-y-2 md:space-y-3">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-white group-hover:text-primary-foreground transition-colors">
+                          {industry.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-white/90 leading-relaxed">{industry.description}</p>
+                      </div>
+                    </CardContent>
+                  </div>
                 </Card>
               </Link>
               </ScrollReveal>
