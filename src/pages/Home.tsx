@@ -189,19 +189,21 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {industries.map((industry, index) => (
               <ScrollReveal key={industry.title} delay={index * 100}>
-                <Link to={industry.href}>
-                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
-                  <CardContent className="p-6 lg:p-8 space-y-4">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10">
-                      <industry.icon className="w-6 h-6 text-primary" />
+                <Link to={industry.href} className="block h-full">
+                <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group border-border/50 hover:border-primary/30">
+                  <CardContent className="p-5 md:p-6 lg:p-7 flex flex-col h-full space-y-3 md:space-y-4">
+                    <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <industry.icon className="w-7 h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-foreground">
-                      {industry.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">{industry.description}</p>
+                    <div className="flex-1 space-y-2">
+                      <h3 className="text-lg md:text-xl font-heading font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {industry.title}
+                      </h3>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{industry.description}</p>
+                    </div>
                   </CardContent>
                 </Card>
               </Link>
