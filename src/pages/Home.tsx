@@ -73,21 +73,18 @@ const featuredPackages = [
   {
     title: "Classic Welcome Set",
     description: "Notebook, pen, mug, ribboned box.",
-    price: "From R 450",
     image: heroImage,
     link: "/packages",
   },
   {
     title: "Executive Cooler & Wine",
     description: "Urban Terrain 12L + wine & accessories.",
-    price: "From R 1,250",
     image: hamperImg,
     link: "/packages",
   },
   {
     title: "Palazzo Blanket Hamper",
     description: "Alex Varga faux-fur + premium treats.",
-    price: "From R 890",
     image: realEstateImg,
     link: "/packages",
   },
@@ -268,7 +265,6 @@ export default function Home() {
                     {pkg.title}
                   </h3>
                   <p className="text-muted-foreground">{pkg.description}</p>
-                  <p className="text-lg font-semibold text-secondary">{pkg.price}</p>
                   <Button asChild variant="outline" className="w-full">
                     <Link to={pkg.link}>View Details</Link>
                   </Button>

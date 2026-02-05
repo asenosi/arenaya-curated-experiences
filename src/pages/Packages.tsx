@@ -16,7 +16,6 @@ const packages = [
     branding: "Screen print on tumbler",
     leadTime: "10-14 working days",
     moq: 20,
-    price: 380,
     image: hamperImg,
   },
   {
@@ -26,7 +25,6 @@ const packages = [
     branding: "Embroidery on cooler",
     leadTime: "14-21 working days",
     moq: 10,
-    price: 1250,
     image: hamperImg,
   },
   {
@@ -36,7 +34,6 @@ const packages = [
     branding: "Embroidered tag on blanket",
     leadTime: "14-21 working days",
     moq: 15,
-    price: 890,
     image: realEstateImg,
   },
   {
@@ -46,7 +43,6 @@ const packages = [
     branding: "Embossed logo on diary, screen print on mug",
     leadTime: "7-10 working days",
     moq: 25,
-    price: 450,
     image: heroImage,
   },
   {
@@ -56,7 +52,6 @@ const packages = [
     branding: "Embroidery on shirt & cap",
     leadTime: "14-21 working days",
     moq: 30,
-    price: 620,
     image: apparelImg,
   },
   {
@@ -66,14 +61,11 @@ const packages = [
     branding: "Embossed card, branded ribbon",
     leadTime: "10-14 working days",
     moq: 10,
-    price: 780,
     image: realEstateImg,
   },
 ];
 
 const categories = ["All", "Staff Gifting", "Client Gifting", "Premium Gifting", "Corporate Gifting", "Branded Apparel", "Real Estate"];
-
-const formatPrice = (price: number) => `R ${price.toLocaleString()}`;
 
 export default function Packages() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -163,9 +155,6 @@ export default function Packages() {
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <p className="text-2xl font-bold text-secondary mb-4">
-                      {formatPrice(pkg.price)}
-                    </p>
                     <Button asChild variant="outline" className="w-full">
                       <Link to="/contact">Request this package</Link>
                     </Button>
