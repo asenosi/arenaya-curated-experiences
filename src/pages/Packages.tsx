@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import CurrencyToggle, { useCurrency } from "@/components/CurrencyToggle";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
@@ -17,8 +16,6 @@ const packages = [
     branding: "Screen print on tumbler",
     leadTime: "10-14 working days",
     moq: 20,
-    zarPrice: 380,
-    ePrice: 380,
     image: hamperImg,
   },
   {
@@ -28,8 +25,6 @@ const packages = [
     branding: "Embroidery on cooler",
     leadTime: "14-21 working days",
     moq: 10,
-    zarPrice: 1250,
-    ePrice: 1250,
     image: hamperImg,
   },
   {
@@ -39,8 +34,6 @@ const packages = [
     branding: "Embroidered tag on blanket",
     leadTime: "14-21 working days",
     moq: 15,
-    zarPrice: 890,
-    ePrice: 890,
     image: realEstateImg,
   },
   {
@@ -50,8 +43,6 @@ const packages = [
     branding: "Embossed logo on diary, screen print on mug",
     leadTime: "7-10 working days",
     moq: 25,
-    zarPrice: 450,
-    ePrice: 450,
     image: heroImage,
   },
   {
@@ -61,8 +52,6 @@ const packages = [
     branding: "Embroidery on shirt & cap",
     leadTime: "14-21 working days",
     moq: 30,
-    zarPrice: 620,
-    ePrice: 620,
     image: apparelImg,
   },
   {
@@ -72,8 +61,6 @@ const packages = [
     branding: "Embossed card, branded ribbon",
     leadTime: "10-14 working days",
     moq: 10,
-    zarPrice: 780,
-    ePrice: 780,
     image: realEstateImg,
   },
 ];
@@ -81,7 +68,6 @@ const packages = [
 const categories = ["All", "Staff Gifting", "Client Gifting", "Premium Gifting", "Corporate Gifting", "Branded Apparel", "Real Estate"];
 
 export default function Packages() {
-  const { currency, setCurrency, formatPrice } = useCurrency();
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredPackages = selectedCategory === "All"
@@ -100,9 +86,6 @@ export default function Packages() {
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
               Pre-designed gift sets ready to be customized with your branding.
             </p>
-            <div className="flex justify-center pt-4">
-              <CurrencyToggle value={currency} onChange={setCurrency} />
-            </div>
           </div>
         </div>
       </section>
@@ -172,9 +155,6 @@ export default function Packages() {
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <p className="text-2xl font-bold text-secondary mb-4">
-                      {formatPrice(pkg.zarPrice, pkg.ePrice)}
-                    </p>
                     <Button asChild variant="outline" className="w-full">
                       <Link to="/contact">Request this package</Link>
                     </Button>
