@@ -111,8 +111,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sticky Sub-Nav */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
+      {/* Sticky title + sub-nav */}
+      <div className="sticky top-16 lg:top-20 z-40">
+        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
+          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
+            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
+              About Arenaya
+            </span>
+          </div>
+        </div>
+      <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
+
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
             {sections.map((s) => (
