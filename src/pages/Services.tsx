@@ -178,7 +178,7 @@ export default function Services() {
           <section
             key={service.id}
             id={service.id}
-            className="scroll-mt-32 animate-fade-up"
+            className="scroll-mt-40 lg:scroll-mt-52 animate-fade-up"
           >
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
               <div className={`space-y-6 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
