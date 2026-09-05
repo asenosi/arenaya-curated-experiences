@@ -51,19 +51,19 @@ export default function Footer() {
               <li className="flex items-start space-x-3">
                 <Mail size={18} className="mt-0.5 text-secondary flex-shrink-0" />
                 <a
-                  href="mailto:hello@arenaya.co.za"
+                  href="mailto:arenayagifts@outlook.com"
                   className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
                 >
-                  hello@arenaya.co.za
+                  arenayagifts@outlook.com
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone size={18} className="mt-0.5 text-secondary flex-shrink-0" />
                 <a
-                  href="tel:+27000000000"
+                  href="tel:+27673403625"
                   className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
                 >
-                  +27 00 000 0000
+                  +27 67 340 3625
                 </a>
               </li>
             </ul>
