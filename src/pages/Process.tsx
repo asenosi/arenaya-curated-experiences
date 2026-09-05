@@ -157,6 +157,8 @@ export default function Process() {
           </div>
         </div>
       </nav>
+      </div>
+
 
       {/* Process Steps */}
       <section id="steps" className="py-16 lg:py-24 scroll-mt-32">
