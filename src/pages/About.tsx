@@ -152,6 +152,8 @@ export default function About() {
           </div>
         </div>
       </nav>
+      </div>
+
 
       {/* Brand Story */}
       <section id="story" className="py-16 lg:py-24 scroll-mt-32">
