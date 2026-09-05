@@ -68,52 +68,30 @@ export default function About() {
     }
   }, [location]);
 
+  // Scroll spy (position based, avoids flickering)
   useEffect(() => {
-    const els = sections
-      .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
-      .filter((x): x is { id: typeof sections[number]['id']; el: HTMLElement } => !!x.el);
-    if (els.length === 0) return;
-
-    if (!activeId) setActiveId(els[0].id);
-
-    const pickClosest = () => {
-      const headerOffset = 120;
-      let best: { id: string; dist: number } | null = null;
-      els.forEach(({ id, el }) => {
-        const top = el.getBoundingClientRect().top - headerOffset;
-        const dist = top <= 0 ? Math.abs(top) : top + 1000;
-        if (!best || dist < best.dist) best = { id, dist };
-      });
-      if (best) setActiveId(best.id);
+    const onScroll = () => {
+      const threshold = 200;
+      let current: string = sections[0].id;
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - threshold <= 0) {
+          current = s.id;
+        }
+      }
+      setActiveId((prev) => (prev === current ? prev : current));
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          const id = visible[0].target.id;
-          setActiveId(id);
-          try {
-            window.history.replaceState(null, "", `#${id}`);
-          } catch {}
-        } else {
-          pickClosest();
-        }
-      },
-      { rootMargin: "-100px 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
-    );
-    els.forEach(({ el }) => observer.observe(el));
-
-    const onScroll = () => pickClosest();
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
+    window.addEventListener("resize", onScroll);
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
+
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
@@ -133,8 +111,17 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sticky Sub-Nav */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
+      {/* Sticky title + sub-nav */}
+      <div className="sticky top-16 lg:top-20 z-40">
+        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
+          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
+            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
+              About Arenaya
+            </span>
+          </div>
+        </div>
+      <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
+
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
             {sections.map((s) => (
@@ -165,9 +152,11 @@ export default function About() {
           </div>
         </div>
       </nav>
+      </div>
+
 
       {/* Brand Story */}
-      <section id="story" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="story" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="space-y-6 animate-fade-up">
@@ -207,7 +196,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section id="values" className="py-16 lg:py-24 bg-card scroll-mt-32">
+      <section id="values" className="py-16 lg:py-24 bg-card scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4 hover:text-royal-navy transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-rich-gold after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
@@ -243,7 +232,7 @@ export default function About() {
       </section>
 
       {/* Why Arenaya */}
-      <section id="why" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="why" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -279,7 +268,7 @@ export default function About() {
       </section>
 
       {/* Founder Note */}
-      <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-32">
+      <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <Card className="group bg-gradient-to-br from-card via-accent/5 to-card hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/40 transition-all duration-700 cursor-pointer relative overflow-hidden">
