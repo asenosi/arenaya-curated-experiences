@@ -68,52 +68,30 @@ export default function About() {
     }
   }, [location]);
 
+  // Scroll spy (position based, avoids flickering)
   useEffect(() => {
-    const els = sections
-      .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
-      .filter((x): x is { id: typeof sections[number]['id']; el: HTMLElement } => !!x.el);
-    if (els.length === 0) return;
-
-    if (!activeId) setActiveId(els[0].id);
-
-    const pickClosest = () => {
-      const headerOffset = 120;
-      let best: { id: string; dist: number } | null = null;
-      els.forEach(({ id, el }) => {
-        const top = el.getBoundingClientRect().top - headerOffset;
-        const dist = top <= 0 ? Math.abs(top) : top + 1000;
-        if (!best || dist < best.dist) best = { id, dist };
-      });
-      if (best) setActiveId(best.id);
+    const onScroll = () => {
+      const threshold = 200;
+      let current: string = sections[0].id;
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - threshold <= 0) {
+          current = s.id;
+        }
+      }
+      setActiveId((prev) => (prev === current ? prev : current));
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          const id = visible[0].target.id;
-          setActiveId(id);
-          try {
-            window.history.replaceState(null, "", `#${id}`);
-          } catch {}
-        } else {
-          pickClosest();
-        }
-      },
-      { rootMargin: "-100px 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
-    );
-    els.forEach(({ el }) => observer.observe(el));
-
-    const onScroll = () => pickClosest();
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
+    window.addEventListener("resize", onScroll);
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
+
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
