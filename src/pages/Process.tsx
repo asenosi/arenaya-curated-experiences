@@ -161,7 +161,7 @@ export default function Process() {
 
 
       {/* Process Steps */}
-      <section id="steps" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="steps" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-16">
             {processSteps.map((step, index) => (
@@ -205,7 +205,7 @@ export default function Process() {
       </section>
 
       {/* Packaging Selection */}
-      <section id="packaging" className="py-16 lg:py-24 bg-card scroll-mt-32">
+      <section id="packaging" className="py-16 lg:py-24 bg-card scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-4">
@@ -248,7 +248,7 @@ export default function Process() {
       </section>
 
       {/* Sustainability */}
-      <section id="sustainability" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="sustainability" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Card className="bg-muted/30 border-2 border-secondary/20">
@@ -270,7 +270,7 @@ export default function Process() {
       </section>
 
       {/* Timeline & Download */}
-      <section id="timeline" className="py-16 lg:py-24 bg-card scroll-mt-32">
+      <section id="timeline" className="py-16 lg:py-24 bg-card scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="space-y-4">

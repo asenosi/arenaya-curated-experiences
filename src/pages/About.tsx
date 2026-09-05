@@ -156,7 +156,7 @@ export default function About() {
 
 
       {/* Brand Story */}
-      <section id="story" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="story" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="space-y-6 animate-fade-up">
@@ -196,7 +196,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section id="values" className="py-16 lg:py-24 bg-card scroll-mt-32">
+      <section id="values" className="py-16 lg:py-24 bg-card scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4 hover:text-royal-navy transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-rich-gold after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
@@ -232,7 +232,7 @@ export default function About() {
       </section>
 
       {/* Why Arenaya */}
-      <section id="why" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="why" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -268,7 +268,7 @@ export default function About() {
       </section>
 
       {/* Founder Note */}
-      <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-32">
+      <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <Card className="group bg-gradient-to-br from-card via-accent/5 to-card hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/40 transition-all duration-700 cursor-pointer relative overflow-hidden">
