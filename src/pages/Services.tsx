@@ -85,37 +85,28 @@ export default function Services() {
     }
   }, [location]);
 
-  // Scroll spy for sticky sub-nav
+  // Scroll spy for sticky sub-nav (position based, avoids flickering)
   useEffect(() => {
-    const sectionIds = services.map((s) => s.id);
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
-
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          const currentId = visible[0].target.id;
-          setActiveId(currentId);
-          try {
-            window.history.replaceState(null, "", `#${currentId}`);
-          } catch {}
+    const onScroll = () => {
+      const threshold = 200;
+      let current = services[0].id;
+      for (const service of services) {
+        const el = document.getElementById(service.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - threshold <= 0) {
+          current = service.id;
         }
-      },
-      {
-        root: null,
-        rootMargin: "-140px 0px -60% 0px",
-        threshold: [0.2, 0.4, 0.6, 0.8],
       }
-    );
+      setActiveId((prev) => (prev === current ? prev : current));
+    };
 
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
@@ -134,40 +125,52 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Sticky Sub-Nav */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
-            {services.map((service) => (
-              <a
-                key={service.id}
-                href={`#${service.id}`}
-                className={cn(
-                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative",
-                  activeId === service.id
-                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
-                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5",
-                  // Desktop: make item fill full bar height and remove rounding
-                  "lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none"
-                )}
-                aria-current={activeId === service.id ? "page" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const el = document.getElementById(service.id);
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    try {
-                      window.history.replaceState(null, "", `#${service.id}`);
-                    } catch {}
-                  }
-                }}
-              >
-                {service.title}
-              </a>
-            ))}
+      {/* Sticky title + sub-nav */}
+      <div className="sticky top-16 lg:top-20 z-40">
+        {/* Sticky section title, visually separated from the main header */}
+        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
+          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
+            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
+              Our Services
+            </span>
           </div>
         </div>
-      </nav>
+
+        <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex overflow-x-auto py-3 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
+              {services.map((service) => (
+                <a
+                  key={service.id}
+                  href={`#${service.id}`}
+                  className={cn(
+                    "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative",
+                    activeId === service.id
+                      ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
+                      : "text-foreground/80 hover:text-primary hover:bg-secondary/5",
+                    // Desktop: make item fill full bar height and remove rounding
+                    "lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none"
+                  )}
+                  aria-current={activeId === service.id ? "page" : undefined}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(service.id);
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      try {
+                        window.history.replaceState(null, "", `#${service.id}`);
+                      } catch {}
+                    }
+                  }}
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </nav>
+      </div>
+
 
       {/* Services Content */}
       <div className="container mx-auto px-4 lg:px-8 py-16 lg:py-24 space-y-24">
