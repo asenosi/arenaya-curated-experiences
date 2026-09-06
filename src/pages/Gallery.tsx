@@ -51,8 +51,8 @@ const filters: ("All" | Category)[] = ["All", "Real Estate", "Dealership", "Appa
 
 /* Deterministic pseudo-random helpers so the layout feels hand-placed, not gridded */
 const tilts = [-3.5, 2.5, -1.5, 4, -2.5, 1.5, 3, -4, 2, -1, 3.5, -2, 1, -3, 2.8];
-const offsets = [0, 56, 24, 88, 12, 64, 32, 96, 8, 48, 20, 72, 40, 16, 60];
-const speeds = [0.06, -0.09, 0.12, -0.05, 0.1, -0.13, 0.07, -0.08, 0.11, -0.06, 0.09, -0.11, 0.05, -0.1, 0.08];
+const offsets = [0, 36, 16, 52, 8, 40, 20, 56, 4, 28, 12, 44, 24, 10, 32];
+const speeds = [0.03, -0.045, 0.055, -0.025, 0.05, -0.06, 0.035, -0.04, 0.05, -0.03, 0.045, -0.05, 0.025, -0.05, 0.04];
 
 export default function Gallery() {
   const [active, setActive] = useState<"All" | Category>("All");
