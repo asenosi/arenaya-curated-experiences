@@ -95,6 +95,15 @@ export default {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        "scale-in": {
+          from: { transform: "scale(0.94)", opacity: "0" },
+          to: { transform: "scale(1)", opacity: "1" },
+        },
+        marquee: {
+          from: { transform: "translate3d(0, 0, 0)" },
+          to: { transform: "translate3d(-50%, 0, 0)" },
+        },
+
       },
       animation: {
         "accordion-down": "accordion-down 0.5s ease-out",
