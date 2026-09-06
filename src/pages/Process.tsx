@@ -92,50 +92,6 @@ export default function Process() {
       </section>
 
 
-      {/* Sticky title + sub-nav */}
-      <div className="sticky top-16 lg:top-20 z-40">
-        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
-          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
-            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
-              Our Process
-            </span>
-          </div>
-        </div>
-      <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
-
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
-            {sections.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className={cn(
-                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none",
-                  activeId === s.id
-                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
-                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
-                )}
-                aria-current={activeId === s.id ? "page" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const el = document.getElementById(s.id);
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    try {
-                      window.history.replaceState(null, "", `#${s.id}`);
-                    } catch {}
-                  }
-                }}
-              >
-                {s.title}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-      </div>
-
-
       {/* Process Steps */}
       <section id="steps" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
