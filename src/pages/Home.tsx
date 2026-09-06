@@ -90,27 +90,11 @@ const featuredPackages = [
   },
 ];
 
-const processSteps = [
-  {
-    number: "1",
-    title: "Brief & Budget",
-    description: "Align goals, audience, quantities.",
-  },
-  {
-    number: "2",
-    title: "Concept & Mood Board",
-    description: "Curated options and packaging direction.",
-  },
-  {
-    number: "3",
-    title: "Branding & Production",
-    description: "Approved specs, quality control.",
-  },
-  {
-    number: "4",
-    title: "Delivery",
-    description: "On-time, securely packed, event-ready.",
-  },
+const processTeaser = [
+  { number: "01", title: "Brief & Budget" },
+  { number: "02", title: "Concept & Mood Board" },
+  { number: "03", title: "Branding & Production" },
+  { number: "04", title: "Delivery & Logistics" },
 ];
 
 const testimonials = [
