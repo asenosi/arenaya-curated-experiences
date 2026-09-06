@@ -116,6 +116,26 @@ export default function Services() {
         title="Corporate Gifting Services & Branded Apparel | Arenaya"
         description="Real estate gifting, dealership gifting, corporate essentials, branded apparel and office launch kits — sourced, branded and delivered."
         path="/services"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Corporate Gifting Services",
+          itemListElement: services.map((service, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "Service",
+              name: service.title,
+              serviceType: service.title,
+              provider: {
+                "@type": "Organization",
+                name: "Arenaya Corporate Gifting",
+                url: "https://arenayagifts.com/",
+              },
+              areaServed: { "@type": "Country", name: "South Africa" },
+            },
+          })),
+        }}
       />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-card">

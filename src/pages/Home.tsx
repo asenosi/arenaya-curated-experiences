@@ -117,12 +117,31 @@ export default function Home() {
         title="Arenaya Corporate Gifting | Premium Corporate Gifts South Africa"
         description="Turnkey corporate gifting partner in South Africa: curated premium gifts, branded apparel and elegant packaging, delivered on time."
         path="/"
-        jsonLd={{
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: "Arenaya Corporate Gifting",
-        url: "https://arenayagifts.com/",
-      }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Arenaya Corporate Gifting",
+            url: "https://arenayagifts.com/",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://arenayagifts.com/#organization",
+            name: "Arenaya Corporate Gifting",
+            url: "https://arenayagifts.com/",
+            review: testimonials.map((t) => ({
+              "@type": "Review",
+              reviewBody: t.quote,
+              author: { "@type": "Person", name: t.author },
+              publisher: { "@type": "Organization", name: t.company },
+              itemReviewed: {
+                "@type": "Organization",
+                name: "Arenaya Corporate Gifting",
+              },
+            })),
+          },
+        ]}
       />
       {/* Hero Section */}
       <section
