@@ -26,24 +26,6 @@ const values = [
   },
 ];
 
-const whyArenaya = [
-  {
-    title: "Design-Led Approach",
-    description: "Every gift is curated with aesthetic excellence and brand alignment in mind.",
-  },
-  {
-    title: "Premium Packaging",
-    description: "First impressions matter. Our packaging transforms gifts into memorable experiences.",
-  },
-  {
-    title: "Reliable Lead Times",
-    description: "Ready in 7-14 working days. We respect your deadlines and deliver on time, every time.",
-  },
-  {
-    title: "Cross-Border Expertise",
-    description: "Seamless delivery across South Africa and Eswatini with full compliance support.",
-  },
-];
 
 export default function About() {
   const location = useLocation();
@@ -52,9 +34,9 @@ export default function About() {
   const sections = [
     { id: "story", title: "Our Story" },
     { id: "values", title: "Values" },
-    { id: "why", title: "Why Arenaya" },
     { id: "founder", title: "Founder Note" },
   ] as const;
+
 
   useEffect(() => {
     if (location.hash) {
@@ -231,41 +213,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why Arenaya */}
-      <section id="why" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground hover:text-rich-gold transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-royal-navy after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-                Why Choose Arenaya
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                What sets us apart in the corporate gifting landscape
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {whyArenaya.map((item, index) => (
-                <Card 
-                  key={index} 
-                  className="group animate-fade-up bg-gradient-to-br from-card to-accent/10 hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/30 transition-all duration-500 cursor-pointer relative overflow-hidden" 
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-rich-gold/0 to-rich-gold/0 group-hover:via-rich-gold/5 group-hover:to-rich-gold/10 transition-all duration-700" />
-                  <CardContent className="p-6 lg:p-8 space-y-3 relative z-10">
-                    <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-rich-gold transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                      {item.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Founder Note */}
       <section id="founder" className="py-16 lg:py-24 bg-muted/30 scroll-mt-40 lg:scroll-mt-52">
