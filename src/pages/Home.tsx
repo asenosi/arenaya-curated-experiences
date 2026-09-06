@@ -396,6 +396,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Cinematic Gallery */}
+      <CinematicGallery />
+
 
       {/* Testimonials */}
       <section className="py-16 lg:py-24 bg-card">
