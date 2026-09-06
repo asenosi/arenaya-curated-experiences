@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const processSteps = [
   {
@@ -51,6 +52,11 @@ const processSteps = [
 export default function Process() {
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Our Gifting Process, Step by Step | Arenaya Corporate Gifting"
+        description="How Arenaya turns a brief into beautifully presented corporate gifts: consultation, curation, branding and delivery."
+        path="/process"
+      />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-royal-navy">
         <div className="container mx-auto px-4 lg:px-8">

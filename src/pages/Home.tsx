@@ -12,6 +12,7 @@ import industryCorporate from "@/assets/industry-corporate.jpg";
 import industryApparel from "@/assets/industry-apparel.jpg";
 import industryOffice from "@/assets/industry-office.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
+import Seo from "@/components/Seo";
 
 const valuePillars = [
   {
@@ -112,6 +113,17 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Arenaya Corporate Gifting | Premium Corporate Gifts South Africa"
+        description="Turnkey corporate gifting partner in South Africa: curated premium gifts, branded apparel and elegant packaging, delivered on time."
+        path="/"
+        jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Arenaya Corporate Gifting",
+        url: "https://arenayagifts.com/",
+      }}
+      />
       {/* Hero Section */}
       <section
         className="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center pt-16 lg:pt-20"

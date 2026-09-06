@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Award, ShieldCheck, Palette } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
+import Seo from "@/components/Seo";
 
 const values = [
   {
@@ -94,6 +95,11 @@ export default function About() {
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="About Arenaya Corporate Gifting | Our Story & Values"
+        description="Meet Arenaya: a South African corporate gifting partner built on thoughtful curation, beautiful presentation and reliable delivery."
+        path="/about"
+      />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8 text-center">

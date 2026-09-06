@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import Seo from "@/components/Seo";
 
 const packages = [
   {
@@ -76,6 +77,11 @@ export default function Packages() {
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Curated Corporate Gift Packages | Arenaya Corporate Gifting"
+        description="Browse ready-to-brand corporate gift packages for staff, clients and premium occasions, customised with your logo."
+        path="/packages"
+      />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">

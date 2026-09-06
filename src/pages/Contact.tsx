@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Phone, Clock, FileText } from "lucide-react";
@@ -13,6 +13,7 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import industryOffice from "@/assets/industry-office.jpg";
 import industryCorporate from "@/assets/industry-corporate.jpg";
 import Hero from "@/components/Hero";
+import Seo from "@/components/Seo";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -69,6 +70,11 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Contact Arenaya | Request a Corporate Gifting Quote"
+        description="Request a corporate gifting quote, chat on WhatsApp, or download our catalogue and company profile."
+        path="/contact"
+      />
       <Hero
         title="Get in Touch"
         subtitle="Let's create something memorable together. Fill out the form below or reach out directly."
