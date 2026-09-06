@@ -195,26 +195,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Arenaya */}
-      <section className="py-16 lg:py-24">
+      {/* Why Corporate Gifting Matters */}
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-background via-card/30 to-background">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground hover:text-rich-gold transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-royal-navy after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-                Why Choose Arenaya
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                What sets us apart in the corporate gifting landscape
-              </p>
-            </div>
+          <div className="max-w-6xl mx-auto space-y-16">
+            {/* Header */}
+            <ScrollReveal>
+              <div className="text-center space-y-6 max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground">
+                  Why Corporate Gifting Matters
+                </h2>
+                <div className="w-24 h-1 bg-rich-gold mx-auto rounded-full" />
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                  A great gift does more than fill a box—it communicates appreciation, strengthens relationships, and keeps your brand memorable.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  At Arenaya, we believe corporate gifting should be intentional, beautifully presented, and aligned with your brand. Whether you're welcoming a new team member, celebrating an achievement, thanking a valued client, or creating an unforgettable event experience, we curate gifts that make people feel recognised and valued.
+                </p>
+                <p className="text-xl md:text-2xl font-heading font-semibold text-royal-navy pt-2">
+                  More Than a Gift. A Lasting Impression.
+                </p>
+              </div>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {whyArenaya.map((item, index) => (
-                <ScrollReveal key={item.title} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
-                  <Card className="group h-full bg-gradient-to-br from-card to-accent/10 hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/30 transition-all duration-500 cursor-pointer relative overflow-hidden">
+            {/* Benefit Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {whyGiftingMatters.map((item, index) => (
+                <ScrollReveal key={item.title} delay={index * 120} direction={index % 2 === 0 ? "left" : "right"}>
+                  <Card className="group h-full bg-card hover:bg-gradient-to-br hover:from-card hover:to-royal-navy/5 border-border/60 hover:border-royal-navy/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-rich-gold/0 to-rich-gold/0 group-hover:via-rich-gold/5 group-hover:to-rich-gold/10 transition-all duration-700" />
-                    <CardContent className="p-6 lg:p-8 space-y-3 relative z-10">
-                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-rich-gold transition-colors duration-300">
+                    <CardContent className="p-6 lg:p-8 space-y-4 relative z-10">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-royal-navy/10 group-hover:bg-royal-navy group-hover:text-white transition-all duration-300">
+                        <item.icon className="w-6 h-6 text-royal-navy group-hover:text-white transition-colors duration-300" />
+                      </div>
+                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
                         {item.title}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
@@ -225,6 +239,25 @@ export default function Home() {
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* Closing Statement */}
+            <ScrollReveal>
+              <div className="relative bg-royal-navy text-white rounded-2xl p-8 lg:p-12 overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-rich-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+                <div className="relative z-10 text-center space-y-6 max-w-3xl mx-auto">
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-white">
+                    Thoughtfully Curated. Beautifully Presented. Unmistakably Yours.
+                  </h3>
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    We bring together quality products, thoughtful curation, premium packaging, and brand personalisation to create gifts that feel considered from the first impression to the final reveal. Because when you give thoughtfully, people remember.
+                  </p>
+                  <Button asChild size="lg" className="bg-rich-gold hover:bg-rich-gold/90 text-royal-navy font-semibold text-lg px-8 mt-4">
+                    <Link to="/contact">Start Your Gifting Journey</Link>
+                  </Button>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
