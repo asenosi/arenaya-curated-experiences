@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Packages from "./pages/Packages";
 import Process from "./pages/Process";
+import Gallery from "./pages/Gallery";
+
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
