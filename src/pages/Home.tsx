@@ -90,12 +90,6 @@ const featuredPackages = [
   },
 ];
 
-const processTeaser = [
-  { number: "01", title: "Brief & Budget" },
-  { number: "02", title: "Concept & Mood Board" },
-  { number: "03", title: "Branding & Production" },
-  { number: "04", title: "Delivery & Logistics" },
-];
 
 const testimonials = [
   {
