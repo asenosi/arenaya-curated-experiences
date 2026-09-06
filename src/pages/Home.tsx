@@ -260,30 +260,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-16 lg:py-24">
+      {/* Process Reference */}
+      <section className="py-16 lg:py-24 bg-royal-navy text-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16 animate-fade-up">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
+          <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16 animate-fade-up">
+            <p className="text-xs lg:text-sm tracking-[0.25em] uppercase text-rich-gold mb-4">
+              Thoughtfully Curated, Elegantly Delivered
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
               Our Process
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From concept to delivery, we make corporate gifting effortless.
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+              From concept to delivery, we make corporate gifting effortless and elegant.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-10 lg:mb-12">
+            {processTeaser.map((step, index) => (
               <ScrollReveal key={step.number} delay={index * 100}>
-                <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground text-2xl font-bold font-heading">
-                  {step.number}
+                <div className="group p-5 lg:p-6 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-rich-gold/40 transition-all duration-300">
+                  <span className="block text-2xl lg:text-3xl font-heading font-bold text-rich-gold mb-2">
+                    {step.number}
+                  </span>
+                  <h3 className="text-base lg:text-lg font-heading font-semibold text-white group-hover:text-rich-gold transition-colors">
+                    {step.title}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-heading font-semibold text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-              </div>
               </ScrollReveal>
             ))}
+          </div>
+
+          <div className="text-center animate-fade-up">
+            <Button asChild size="lg" variant="secondary" className="text-lg px-8">
+              <Link to="/process">Explore Our Process</Link>
+            </Button>
           </div>
         </div>
       </section>
