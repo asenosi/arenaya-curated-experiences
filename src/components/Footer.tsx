@@ -94,7 +94,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-sm text-primary-foreground/70 pt-4">
-              Serving South Africa
+              Nationwide
             </p>
           </div>
         </div>
