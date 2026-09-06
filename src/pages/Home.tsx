@@ -12,6 +12,7 @@ import industryCorporate from "@/assets/industry-corporate.jpg";
 import industryApparel from "@/assets/industry-apparel.jpg";
 import industryOffice from "@/assets/industry-office.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
+import CinematicGallery from "@/components/gallery/CinematicGallery";
 
 const valuePillars = [
   {
@@ -394,6 +395,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Cinematic Gallery */}
+      <CinematicGallery />
 
 
       {/* Testimonials */}

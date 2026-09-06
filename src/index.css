@@ -99,11 +99,93 @@ All colors MUST be HSL.
   .stagger-children > *:nth-child(5) { animation-delay: 400ms; }
   .stagger-children > *:nth-child(6) { animation-delay: 500ms; }
 
+  /* ---- Cinematic gallery ---- */
+  .gallery-tile {
+    --tx: 0deg;
+    --ty: 0deg;
+    opacity: 0;
+    transform: translateY(48px);
+    clip-path: inset(8% 6% 8% 6% round 1rem);
+    transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+      clip-path 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+
+  .gallery-tile.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0% 0% 0% 0% round 1rem);
+  }
+
+  .gallery-tile > div {
+    transform: perspective(1200px) rotateY(var(--tx)) rotateX(var(--ty));
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 600ms ease;
+  }
+
+  .gallery-tile:hover > div {
+    box-shadow: 0 30px 60px -20px hsl(var(--foreground) / 0.35);
+  }
+
+  .gallery-media {
+    --py: 0px;
+    transform: translate3d(0, var(--py), 0) scale(1.06);
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-tile:hover .gallery-media {
+    transform: translate3d(0, var(--py), 0) scale(1.12);
+  }
+
+  .gallery-drift {
+    animation-duration: 22s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    will-change: transform;
+  }
+
+  .gallery-kb-a { animation-name: kb-a; }
+  .gallery-kb-b { animation-name: kb-b; animation-duration: 26s; }
+  .gallery-kb-c { animation-name: kb-c; animation-duration: 30s; }
+
+  @keyframes kb-a {
+    from { transform: scale(1) translate3d(0, 0, 0); }
+    to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+  }
+  @keyframes kb-b {
+    from { transform: scale(1.06) translate3d(1%, 1%, 0); }
+    to { transform: scale(1) translate3d(-1%, -1.5%, 0); }
+  }
+  @keyframes kb-c {
+    from { transform: scale(1) translate3d(0, 1.5%, 0); }
+    to { transform: scale(1.07) translate3d(1%, -1%, 0); }
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-up,
     .stagger-children > * {
       animation: none !important;
     }
+
+    .gallery-drift {
+      animation: none !important;
+    }
+
+    .gallery-tile {
+      opacity: 1;
+      transform: none;
+      clip-path: none;
+      transition: none;
+    }
+
+    .gallery-tile > div,
+    .gallery-media,
+    .gallery-tile:hover .gallery-media {
+      transform: none !important;
+      transition: none !important;
+    }
   }
 }
+
