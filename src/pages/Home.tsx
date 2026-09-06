@@ -31,22 +31,36 @@ const valuePillars = [
   },
 ];
 
-const whyArenaya = [
+const whyGiftingMatters = [
   {
-    title: "Design-Led Approach",
-    description: "Every gift is curated with aesthetic excellence and brand alignment in mind.",
+    icon: Heart,
+    title: "Build Stronger Relationships",
+    description: "Thoughtful gifts create meaningful connections with clients, partners, employees, and stakeholders—turning business relationships into lasting ones.",
   },
   {
-    title: "Premium Packaging",
-    description: "First impressions matter. Our packaging transforms gifts into memorable experiences.",
+    icon: Award,
+    title: "Show Appreciation",
+    description: "Recognising people for their contribution, loyalty, or partnership goes a long way. A carefully chosen gift says, \"We see you. We value you.\"",
   },
   {
-    title: "Reliable Lead Times",
-    description: "Ready in 7-14 working days. We respect your deadlines and deliver on time, every time.",
+    icon: Eye,
+    title: "Keep Your Brand Top of Mind",
+    description: "Branded gifts transform everyday products into powerful brand touchpoints. When your brand becomes part of someone's daily life, your business stays memorable.",
   },
   {
-    title: "Cross-Border Expertise",
-    description: "Seamless delivery across southern Africa with full compliance support.",
+    icon: Sparkles,
+    title: "Create Memorable Experiences",
+    description: "From onboarding boxes to milestone celebrations and corporate events, the right gift can turn an ordinary moment into an experience people remember.",
+  },
+  {
+    icon: Users,
+    title: "Celebrate the People Behind Your Business",
+    description: "Your employees, clients, and partners are an important part of your success. Gifting gives you a tangible way to celebrate their milestones, achievements, and moments that matter.",
+  },
+  {
+    icon: Calendar,
+    title: "Make Every Occasion Count",
+    description: "Whether it's an event, campaign, celebration, achievement, onboarding, or simply a moment of appreciation, we help you find the right gift for the occasion.",
   },
 ];
 
