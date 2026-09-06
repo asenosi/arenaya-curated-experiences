@@ -145,7 +145,7 @@ export default function Home() {
                 <Link to="/contact">Request a Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 text-lg px-8">
-                <a href="/assets/Arenaya_Catalogue.pdf" download>
+                <a href="/assets/Arenaya_Catalogue.pdf" target="_blank" rel="noopener noreferrer">
                   View Catalogue
                 </a>
               </Button>

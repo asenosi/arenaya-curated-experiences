@@ -342,13 +342,13 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button asChild variant="outline" className="w-full justify-start">
-                    <a href="/assets/Arenaya_Catalogue.pdf" download>
+                    <a href="/assets/Arenaya_Catalogue.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       Product Catalogue (PDF)
                     </a>
                   </Button>
                   <Button asChild variant="outline" className="w-full justify-start">
-                    <a href="/assets/Arenaya_Company_Profile.pdf" download>
+                    <a href="/assets/Arenaya_Company_Profile.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       Company Profile (PDF)
                     </a>
