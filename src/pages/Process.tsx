@@ -41,12 +41,12 @@ const processSteps = [
   {
     number: 4,
     title: "Delivery & Logistics",
-    description: "We handle the logistics to ensure your gifts arrive on time, beautifully presented, and event-ready. Our delivery network covers South Africa and Eswatini with cross-border capability.",
+    description: "We handle the logistics to ensure your gifts arrive on time, beautifully presented, and event-ready. Our delivery network covers southern Africa with cross-border capability.",
     details: [
       "Hand-checked assemblies for quality assurance",
       "Protective packaging for safe transport",
       "On-time delivery to your specified locations",
-      "Cross-border delivery capability (SA & Eswatini)",
+      "Cross-border delivery capability across southern Africa",
     ],
   },
 ];
@@ -191,7 +191,8 @@ export default function Process() {
             {processSteps.map((step, index) => (
               <div
                 key={step.number}
-                className="animate-fade-up"
+                id={`step-${step.number}`}
+                className="animate-fade-up scroll-mt-40 lg:scroll-mt-52"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-start gap-6">
