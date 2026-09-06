@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Seo from "@/components/Seo";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -150,17 +149,6 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen">
-      <Seo
-        title="Gallery of Previous Corporate Gifting Work | Arenaya"
-        description="Browse Arenaya's archive of curated corporate gifts, branded apparel, handover sets and launch kits delivered nationwide."
-        path="/gallery"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "ImageGallery",
-          name: "Arenaya Gifting Archive",
-          about: "Corporate gifting, branded apparel and event merchandise projects",
-        }}
-      />
 
       {/* Kinetic hero */}
       <section className="relative overflow-hidden bg-primary pt-28 pb-16 lg:pt-36 lg:pb-24 text-primary-foreground">
