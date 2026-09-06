@@ -31,6 +31,25 @@ const valuePillars = [
   },
 ];
 
+const whyArenaya = [
+  {
+    title: "Design-Led Approach",
+    description: "Every gift is curated with aesthetic excellence and brand alignment in mind.",
+  },
+  {
+    title: "Premium Packaging",
+    description: "First impressions matter. Our packaging transforms gifts into memorable experiences.",
+  },
+  {
+    title: "Reliable Lead Times",
+    description: "Ready in 7-14 working days. We respect your deadlines and deliver on time, every time.",
+  },
+  {
+    title: "Cross-Border Expertise",
+    description: "Seamless delivery across southern Africa with full compliance support.",
+  },
+];
+
 const industries = [
   {
     icon: HomeIcon,
@@ -158,6 +177,40 @@ export default function Home() {
               </div>
               </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Arenaya */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground hover:text-rich-gold transition-colors duration-300 cursor-pointer relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-1 after:bottom-[-6px] after:left-0 after:bg-royal-navy after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                Why Choose Arenaya
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                What sets us apart in the corporate gifting landscape
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {whyArenaya.map((item, index) => (
+                <ScrollReveal key={item.title} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
+                  <Card className="group h-full bg-gradient-to-br from-card to-accent/10 hover:shadow-2xl hover:-translate-y-1 hover:border-royal-navy/30 transition-all duration-500 cursor-pointer relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-rich-gold/0 to-rich-gold/0 group-hover:via-rich-gold/5 group-hover:to-rich-gold/10 transition-all duration-700" />
+                    <CardContent className="p-6 lg:p-8 space-y-3 relative z-10">
+                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-rich-gold transition-colors duration-300">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
