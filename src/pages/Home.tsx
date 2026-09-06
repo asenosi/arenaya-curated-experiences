@@ -158,7 +158,7 @@ export default function Home() {
               Curated Corporate Gifting & Branding
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Premium gifts, elegant packaging, and reliable delivery across SA & Eswatini.
+              Premium gifts, elegant packaging, and reliable delivery across South Africa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
@@ -177,6 +177,7 @@ export default function Home() {
       {/* Value Pillars */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="sr-only">Why partner with Arenaya</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {valuePillars.map((pillar, index) => (
               <ScrollReveal key={pillar.title} delay={index * 100}>

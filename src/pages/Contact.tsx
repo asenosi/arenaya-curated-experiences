@@ -21,7 +21,7 @@ const contactSchema = z.object({
   email: z.string().email("Invalid email address").max(255),
   phone: z.string().min(10, "Phone number is required").max(20),
   city: z.string().min(2, "City is required").max(50),
-  country: z.enum(["SA", "ES"], { required_error: "Please select a country" }),
+  country: z.enum(["SA"], { required_error: "Please select a country" }),
   serviceInterest: z.string().min(1, "Please select a service"),
   quantity: z.string().min(1, "Quantity estimate is required"),
   budget: z.string().min(1, "Budget range is required"),
@@ -192,7 +192,6 @@ export default function Contact() {
                         >
                           <option value="">Select country</option>
                           <option value="SA">South Africa</option>
-                          <option value="ES">Eswatini</option>
                         </select>
                         {errors.country && (
                           <p className="text-sm text-destructive">{errors.country.message}</p>

@@ -42,7 +42,7 @@ const whyArenaya = [
   },
   {
     title: "Cross-Border Expertise",
-    description: "Seamless delivery across South Africa and Eswatini with full compliance support.",
+    description: "Seamless delivery across South Africa with full compliance support.",
   },
 ];
 
@@ -176,7 +176,7 @@ export default function About() {
                   opportunities to create genuine connections.
                 </p>
                 <p>
-                  Today, we partner with businesses across South Africa and Eswatini to transform
+                  Today, we partner with businesses across South Africa to transform
                   gifting moments into lasting impressions. From real estate handovers to dealership
                   celebrations, from office launches to year-end appreciation—we bring design,
                   quality, and care to every detail.
