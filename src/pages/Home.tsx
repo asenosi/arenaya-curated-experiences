@@ -33,6 +33,11 @@ const valuePillars = [
 
 const whyGiftingMatters = [
   {
+    icon: Eye,
+    title: "Keep Your Brand Top of Mind",
+    description: "Branded gifts transform everyday products into powerful brand touchpoints. When your brand becomes part of someone's daily life, your business stays memorable.",
+  },
+  {
     icon: Heart,
     title: "Build Stronger Relationships",
     description: "Thoughtful gifts create meaningful connections with clients, partners, employees, and stakeholders—turning business relationships into lasting ones.",
@@ -41,11 +46,6 @@ const whyGiftingMatters = [
     icon: Award,
     title: "Show Appreciation",
     description: "Recognising people for their contribution, loyalty, or partnership goes a long way. A carefully chosen gift says, \"We see you. We value you.\"",
-  },
-  {
-    icon: Eye,
-    title: "Keep Your Brand Top of Mind",
-    description: "Branded gifts transform everyday products into powerful brand touchpoints. When your brand becomes part of someone's daily life, your business stays memorable.",
   },
   {
     icon: Sparkles,
@@ -196,16 +196,19 @@ export default function Home() {
       </section>
 
       {/* Why Corporate Gifting Matters */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-background via-card/30 to-background">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-background via-card/30 to-background overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto space-y-16">
+          <div className="max-w-5xl mx-auto space-y-16 lg:space-y-20">
             {/* Header */}
             <ScrollReveal>
               <div className="text-center space-y-6 max-w-3xl mx-auto">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground">
+                <span className="block text-secondary uppercase tracking-[0.2em] text-sm font-body font-medium">
+                  The Impact
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight">
                   Why Corporate Gifting Matters
                 </h2>
-                <div className="w-24 h-1 bg-rich-gold mx-auto rounded-full" />
+                <div className="w-24 h-1 bg-rich-gold rounded-full mx-auto" />
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                   A great gift does more than fill a box—it communicates appreciation, strengthens relationships, and keeps your brand memorable.
                 </p>
@@ -218,26 +221,64 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            {/* Benefit Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {whyGiftingMatters.map((item, index) => (
-                <ScrollReveal key={item.title} delay={index * 120} direction={index % 2 === 0 ? "left" : "right"}>
-                  <Card className="group h-full bg-card hover:bg-gradient-to-br hover:from-card hover:to-royal-navy/5 border-border/60 hover:border-royal-navy/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-rich-gold/0 to-rich-gold/0 group-hover:via-rich-gold/5 group-hover:to-rich-gold/10 transition-all duration-700" />
-                    <CardContent className="p-6 lg:p-8 space-y-4 relative z-10">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-royal-navy/10 group-hover:bg-royal-navy group-hover:text-white transition-all duration-300">
-                        <item.icon className="w-6 h-6 text-royal-navy group-hover:text-white transition-colors duration-300" />
-                      </div>
-                      <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
-                        {item.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                        {item.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </ScrollReveal>
-              ))}
+            {/* Overlapping Editorial Grid */}
+            <div className="relative">
+              {/* Subtle vertical connector */}
+              <div className="absolute left-1/2 top-8 bottom-8 w-px bg-gradient-to-b from-rich-gold/0 via-rich-gold/20 to-rich-gold/0 hidden md:block" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-8 md:gap-y-0">
+                {/* Left Column */}
+                <div className="space-y-8 lg:space-y-12">
+                  {whyGiftingMatters.filter((_, i) => i % 2 === 0).map((item, index) => {
+                    const number = String(index * 2 + 1).padStart(2, "0");
+                    return (
+                      <ScrollReveal key={item.title} delay={index * 120} direction="left">
+                        <div className="group relative bg-card/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-border/40 hover:border-rich-gold/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-rich-gold/5">
+                          <div className="flex items-start gap-5 lg:gap-6">
+                            <span className="text-secondary font-heading text-3xl lg:text-4xl leading-none opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                              {number}
+                            </span>
+                            <div className="space-y-3">
+                              <h3 className="text-xl lg:text-2xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
+                                {item.title}
+                              </h3>
+                              <p className="text-muted-foreground leading-relaxed">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    );
+                  })}
+                </div>
+
+                {/* Right Column - nested between left items */}
+                <div className="space-y-8 lg:space-y-12 md:mt-24 lg:mt-32">
+                  {whyGiftingMatters.filter((_, i) => i % 2 !== 0).map((item, index) => {
+                    const number = String(index * 2 + 2).padStart(2, "0");
+                    return (
+                      <ScrollReveal key={item.title} delay={index * 120 + 100} direction="right">
+                        <div className="group relative bg-card/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-border/40 hover:border-rich-gold/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-rich-gold/5">
+                          <div className="flex items-start gap-5 lg:gap-6">
+                            <span className="text-secondary font-heading text-3xl lg:text-4xl leading-none opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                              {number}
+                            </span>
+                            <div className="space-y-3">
+                              <h3 className="text-xl lg:text-2xl font-heading font-semibold text-foreground group-hover:text-royal-navy transition-colors duration-300">
+                                {item.title}
+                              </h3>
+                              <p className="text-muted-foreground leading-relaxed">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Closing Statement */}
