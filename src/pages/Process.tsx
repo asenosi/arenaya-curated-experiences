@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { Leaf } from "lucide-react";
 
 const processSteps = [
@@ -41,120 +38,58 @@ const processSteps = [
   {
     number: 4,
     title: "Delivery & Logistics",
-    description: "We handle the logistics to ensure your gifts arrive on time, beautifully presented, and event-ready. Our delivery network covers South Africa and Eswatini with cross-border capability.",
+    description: "We handle the logistics to ensure your gifts arrive on time, beautifully presented, and event-ready. Our delivery network covers southern Africa with cross-border capability.",
     details: [
       "Hand-checked assemblies for quality assurance",
       "Protective packaging for safe transport",
       "On-time delivery to your specified locations",
-      "Cross-border delivery capability (SA & Eswatini)",
+      "Cross-border delivery capability across southern Africa",
     ],
   },
 ];
 
 export default function Process() {
-  const location = useLocation();
-  const [activeId, setActiveId] = useState<string | null>(null);
-
-  const sections = [
-    { id: "steps", title: "Steps" },
-    { id: "sustainability", title: "Sustainability" },
-  ] as const;
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-      }
-    }
-  }, [location]);
-
-  // Scroll spy (position based, avoids flickering)
-  useEffect(() => {
-    const onScroll = () => {
-      const threshold = 200;
-      let current: string = sections[0].id;
-      for (const s of sections) {
-        const el = document.getElementById(s.id);
-        if (!el) continue;
-        if (el.getBoundingClientRect().top - threshold <= 0) {
-          current = s.id;
-        }
-      }
-      setActiveId((prev) => (prev === current ? prev : current));
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-card">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-4 animate-fade-up">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground">
+      <section className="py-16 lg:py-24 bg-royal-navy">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4 animate-fade-up">
+            <p className="text-xs lg:text-sm tracking-[0.25em] uppercase text-rich-gold">
+              Thoughtfully Curated, Elegantly Delivered
+            </p>
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-white">
               Our Process
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
               From concept to delivery, we make corporate gifting effortless and elegant.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Sticky title + sub-nav */}
-      <div className="sticky top-16 lg:top-20 z-40">
-        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
-          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
-            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
-              Our Process
-            </span>
-          </div>
-        </div>
-      <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
-
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
-            {sections.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className={cn(
-                  "flex-shrink-0 px-4 py-2 text-sm font-medium rounded-md transition-colors relative lg:h-14 lg:flex lg:items-center lg:px-6 lg:rounded-none",
-                  activeId === s.id
-                    ? "bg-royal-navy text-white font-bold after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-rich-gold"
-                    : "text-foreground/80 hover:text-primary hover:bg-secondary/5"
-                )}
-                aria-current={activeId === s.id ? "page" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const el = document.getElementById(s.id);
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    try {
-                      window.history.replaceState(null, "", `#${s.id}`);
-                    } catch {}
-                  }
+          {/* Step overview cards */}
+          <div className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-5xl mx-auto">
+            {processSteps.map((step, index) => (
+              <button
+                key={step.number}
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById(`step-${step.number}`);
+                  el?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
+                className="group text-left rounded-lg border border-white/15 bg-white/5 p-5 lg:p-6 transition-all duration-500 hover:bg-white/10 hover:border-rich-gold/60 hover:-translate-y-1 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {s.title}
-              </a>
+                <span className="block text-2xl lg:text-3xl font-heading font-bold text-rich-gold">
+                  {String(step.number).padStart(2, "0")}
+                </span>
+                <span className="mt-2 block text-sm lg:text-base font-heading font-semibold text-white group-hover:text-rich-gold transition-colors">
+                  {step.title}
+                </span>
+              </button>
             ))}
           </div>
         </div>
-      </nav>
-      </div>
+      </section>
 
 
       {/* Process Steps */}
@@ -164,7 +99,8 @@ export default function Process() {
             {processSteps.map((step, index) => (
               <div
                 key={step.number}
-                className="animate-fade-up"
+                id={`step-${step.number}`}
+                className="animate-fade-up scroll-mt-40 lg:scroll-mt-52"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-start gap-6">

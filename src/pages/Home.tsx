@@ -90,28 +90,6 @@ const featuredPackages = [
   },
 ];
 
-const processSteps = [
-  {
-    number: "1",
-    title: "Brief & Budget",
-    description: "Align goals, audience, quantities.",
-  },
-  {
-    number: "2",
-    title: "Concept & Mood Board",
-    description: "Curated options and packaging direction.",
-  },
-  {
-    number: "3",
-    title: "Branding & Production",
-    description: "Approved specs, quality control.",
-  },
-  {
-    number: "4",
-    title: "Delivery",
-    description: "On-time, securely packed, event-ready.",
-  },
-];
 
 const testimonials = [
   {
@@ -276,33 +254,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16 animate-fade-up">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
-              Our Process
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From concept to delivery, we make corporate gifting effortless.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
-              <ScrollReveal key={step.number} delay={index * 100}>
-                <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground text-2xl font-bold font-heading">
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-              </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials */}
       <section className="py-16 lg:py-24 bg-card">
