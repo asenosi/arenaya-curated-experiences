@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Phone, Clock, FileText } from "lucide-react";
@@ -13,6 +13,7 @@ import heroImage from "@/assets/hero-gifts.jpg";
 import industryOffice from "@/assets/industry-office.jpg";
 import industryCorporate from "@/assets/industry-corporate.jpg";
 import Hero from "@/components/Hero";
+import Seo from "@/components/Seo";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -20,7 +21,7 @@ const contactSchema = z.object({
   email: z.string().email("Invalid email address").max(255),
   phone: z.string().min(10, "Phone number is required").max(20),
   city: z.string().min(2, "City is required").max(50),
-  country: z.enum(["SA", "ES"], { required_error: "Please select a country" }),
+  country: z.enum(["SA"], { required_error: "Please select a country" }),
   serviceInterest: z.string().min(1, "Please select a service"),
   quantity: z.string().min(1, "Quantity estimate is required"),
   budget: z.string().min(1, "Budget range is required"),
@@ -65,10 +66,15 @@ export default function Contact() {
     }
   };
 
-  const whatsappLink = "https://wa.me/27000000000?text=Hi%20Arenaya,%20I'd%20like%20to%20discuss%20corporate%20gifting.";
+  const whatsappLink = "https://wa.me/27673403625?text=Hi%20Arenaya,%20I'd%20like%20to%20discuss%20corporate%20gifting.";
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Contact Arenaya | Request a Corporate Gifting Quote"
+        description="Request a corporate gifting quote, chat on WhatsApp, or download our catalogue and company profile."
+        path="/contact"
+      />
       <Hero
         title="Get in Touch"
         subtitle="Let's create something memorable together. Fill out the form below or reach out directly."
@@ -83,7 +89,7 @@ export default function Contact() {
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl font-heading">Request a Quote</CardTitle>
+                  <h2 className="text-2xl font-heading font-semibold text-foreground">Request a Quote</h2>
                 </CardHeader>
                 <CardContent>
                   {isSuccess && (
@@ -153,7 +159,7 @@ export default function Contact() {
                           id="phone"
                           type="tel"
                           {...register("phone")}
-                          placeholder="+27 00 000 0000"
+                          placeholder="+27 67 340 3625"
                           aria-invalid={errors.phone ? "true" : "false"}
                         />
                         {errors.phone && (
@@ -186,7 +192,6 @@ export default function Contact() {
                         >
                           <option value="">Select country</option>
                           <option value="SA">South Africa</option>
-                          <option value="ES">Eswatini</option>
                         </select>
                         {errors.country && (
                           <p className="text-sm text-destructive">{errors.country.message}</p>
@@ -297,7 +302,7 @@ export default function Contact() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl font-heading">Contact Details</CardTitle>
+                  <h2 className="text-xl font-heading font-semibold text-foreground">Contact Details</h2>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start space-x-3">
@@ -318,10 +323,10 @@ export default function Contact() {
                     <div>
                       <p className="font-medium text-foreground">Phone / WhatsApp</p>
                       <a
-                        href="tel:+27000000000"
+                        href="tel:+27673403625"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        +27 00 000 0000
+                        +27 67 340 3625
                       </a>
                     </div>
                   </div>
@@ -338,7 +343,7 @@ export default function Contact() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl font-heading">Download Resources</CardTitle>
+                  <h2 className="text-xl font-heading font-semibold text-foreground">Download Resources</h2>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button asChild variant="outline" className="w-full justify-start">

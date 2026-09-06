@@ -12,6 +12,7 @@ import industryCorporate from "@/assets/industry-corporate.jpg";
 import industryApparel from "@/assets/industry-apparel.jpg";
 import industryOffice from "@/assets/industry-office.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
+import Seo from "@/components/Seo";
 
 const valuePillars = [
   {
@@ -112,6 +113,36 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Arenaya Corporate Gifting | Premium Corporate Gifts South Africa"
+        description="Turnkey corporate gifting partner in South Africa: curated premium gifts, branded apparel and elegant packaging, delivered on time."
+        path="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Arenaya Corporate Gifting",
+            url: "https://arenayagifts.com/",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://arenayagifts.com/#organization",
+            name: "Arenaya Corporate Gifting",
+            url: "https://arenayagifts.com/",
+            review: testimonials.map((t) => ({
+              "@type": "Review",
+              reviewBody: t.quote,
+              author: { "@type": "Person", name: t.author },
+              publisher: { "@type": "Organization", name: t.company },
+              itemReviewed: {
+                "@type": "Organization",
+                name: "Arenaya Corporate Gifting",
+              },
+            })),
+          },
+        ]}
+      />
       {/* Hero Section */}
       <section
         className="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center pt-16 lg:pt-20"
@@ -127,7 +158,7 @@ export default function Home() {
               Curated Corporate Gifting & Branding
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Premium gifts, elegant packaging, and reliable delivery across SA & Eswatini.
+              Premium gifts, elegant packaging, and reliable delivery across South Africa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
@@ -146,6 +177,7 @@ export default function Home() {
       {/* Value Pillars */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="sr-only">Why partner with Arenaya</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {valuePillars.map((pillar, index) => (
               <ScrollReveal key={pillar.title} delay={index * 100}>

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import Seo from "@/components/Seo";
 
 const services = [
   {
@@ -111,6 +112,31 @@ export default function Services() {
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Corporate Gifting Services & Branded Apparel | Arenaya"
+        description="Real estate gifting, dealership gifting, corporate essentials, branded apparel and office launch kits — sourced, branded and delivered."
+        path="/services"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Corporate Gifting Services",
+          itemListElement: services.map((service, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "Service",
+              name: service.title,
+              serviceType: service.title,
+              provider: {
+                "@type": "Organization",
+                name: "Arenaya Corporate Gifting",
+                url: "https://arenayagifts.com/",
+              },
+              areaServed: { "@type": "Country", name: "South Africa" },
+            },
+          })),
+        }}
+      />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8 text-center">

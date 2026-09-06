@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
 import hamperImg from "@/assets/executive-hamper.jpg";
+import Seo from "@/components/Seo";
 
 const packages = [
   {
@@ -76,6 +77,11 @@ export default function Packages() {
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
+      <Seo
+        title="Curated Corporate Gift Packages | Arenaya Corporate Gifting"
+        description="Browse ready-to-brand corporate gift packages for staff, clients and premium occasions, customised with your logo."
+        path="/packages"
+      />
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
@@ -93,6 +99,7 @@ export default function Packages() {
       {/* Filters */}
       <section className="py-8 border-b border-border">
         <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="sr-only">Browse packages by category</h2>
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((cat) => (
               <Button
@@ -111,6 +118,9 @@ export default function Packages() {
       {/* Packages Grid */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground text-center mb-12">
+            Premium Corporate Gift Packages
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
             {filteredPackages.map((pkg) => (
               <Card key={pkg.name} className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
@@ -126,7 +136,7 @@ export default function Packages() {
                     <Badge variant="secondary" className="mb-2">
                       {pkg.category}
                     </Badge>
-                    <CardTitle className="text-xl font-heading">{pkg.name}</CardTitle>
+                    <h3 className="text-xl font-heading font-semibold text-foreground">{pkg.name}</h3>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -175,6 +185,7 @@ export default function Packages() {
       {/* Note */}
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl font-heading font-semibold text-foreground mb-4">Good to Know</h2>
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
             All packages include branding unless noted. Final quote provided upon approval of brief, artwork, and quantities.
             Pricing subject to change based on customization requirements.
