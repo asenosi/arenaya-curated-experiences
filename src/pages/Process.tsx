@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { Leaf } from "lucide-react";
 
 const processSteps = [
@@ -52,51 +49,6 @@ const processSteps = [
 ];
 
 export default function Process() {
-  const location = useLocation();
-  const [activeId, setActiveId] = useState<string | null>(null);
-
-  const sections = [
-    { id: "steps", title: "Steps" },
-    { id: "sustainability", title: "Sustainability" },
-  ] as const;
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-      }
-    }
-  }, [location]);
-
-  // Scroll spy (position based, avoids flickering)
-  useEffect(() => {
-    const onScroll = () => {
-      const threshold = 200;
-      let current: string = sections[0].id;
-      for (const s of sections) {
-        const el = document.getElementById(s.id);
-        if (!el) continue;
-        if (el.getBoundingClientRect().top - threshold <= 0) {
-          current = s.id;
-        }
-      }
-      setActiveId((prev) => (prev === current ? prev : current));
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
