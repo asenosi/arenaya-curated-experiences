@@ -103,26 +103,6 @@ const industries = [
   },
 ];
 
-const featuredPackages = [
-  {
-    title: "Classic Welcome Set",
-    description: "Notebook, pen, mug, ribboned box.",
-    image: heroImage,
-    link: "/packages",
-  },
-  {
-    title: "Executive Cooler & Wine",
-    description: "Urban Terrain 12L + wine & accessories.",
-    image: hamperImg,
-    link: "/packages",
-  },
-  {
-    title: "Palazzo Blanket Hamper",
-    description: "Alex Varga faux-fur + premium treats.",
-    image: realEstateImg,
-    link: "/packages",
-  },
-];
 
 
 const testimonials = [
@@ -351,45 +331,6 @@ export default function Home() {
                   </div>
                 </Card>
               </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Packages */}
-      <section className="py-16 lg:py-24 bg-card">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16 animate-fade-up">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
-              Featured Packages
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Thoughtfully curated gift sets ready to be branded for your company.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {featuredPackages.map((pkg, index) => (
-              <ScrollReveal key={pkg.title} delay={index * 150}>
-                <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-heading font-semibold text-foreground">
-                    {pkg.title}
-                  </h3>
-                  <p className="text-muted-foreground">{pkg.description}</p>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to={pkg.link}>View Details</Link>
-                  </Button>
-                </CardContent>
-              </Card>
               </ScrollReveal>
             ))}
           </div>
