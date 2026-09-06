@@ -33,6 +33,11 @@ const valuePillars = [
 
 const whyGiftingMatters = [
   {
+    icon: Eye,
+    title: "Keep Your Brand Top of Mind",
+    description: "Branded gifts transform everyday products into powerful brand touchpoints. When your brand becomes part of someone's daily life, your business stays memorable.",
+  },
+  {
     icon: Heart,
     title: "Build Stronger Relationships",
     description: "Thoughtful gifts create meaningful connections with clients, partners, employees, and stakeholders—turning business relationships into lasting ones.",
@@ -41,11 +46,6 @@ const whyGiftingMatters = [
     icon: Award,
     title: "Show Appreciation",
     description: "Recognising people for their contribution, loyalty, or partnership goes a long way. A carefully chosen gift says, \"We see you. We value you.\"",
-  },
-  {
-    icon: Eye,
-    title: "Keep Your Brand Top of Mind",
-    description: "Branded gifts transform everyday products into powerful brand touchpoints. When your brand becomes part of someone's daily life, your business stays memorable.",
   },
   {
     icon: Sparkles,
