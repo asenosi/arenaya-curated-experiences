@@ -100,18 +100,45 @@ export default function Process() {
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-card">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-4 animate-fade-up">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground">
+      <section className="py-16 lg:py-24 bg-royal-navy">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4 animate-fade-up">
+            <p className="text-xs lg:text-sm tracking-[0.25em] uppercase text-rich-gold">
+              Thoughtfully Curated, Elegantly Delivered
+            </p>
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-white">
               Our Process
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
               From concept to delivery, we make corporate gifting effortless and elegant.
             </p>
           </div>
+
+          {/* Step overview cards */}
+          <div className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-5xl mx-auto">
+            {processSteps.map((step, index) => (
+              <button
+                key={step.number}
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById(`step-${step.number}`);
+                  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="group text-left rounded-lg border border-white/15 bg-white/5 p-5 lg:p-6 transition-all duration-500 hover:bg-white/10 hover:border-rich-gold/60 hover:-translate-y-1 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <span className="block text-2xl lg:text-3xl font-heading font-bold text-rich-gold">
+                  {String(step.number).padStart(2, "0")}
+                </span>
+                <span className="mt-2 block text-sm lg:text-base font-heading font-semibold text-white group-hover:text-rich-gold transition-colors">
+                  {step.title}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
+
 
       {/* Sticky title + sub-nav */}
       <div className="sticky top-16 lg:top-20 z-40">
