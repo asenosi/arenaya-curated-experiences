@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon, ArrowRight } from "lucide-react";
+import { Sparkles, Building2, Car, Briefcase, Shirt, Home as HomeIcon, ArrowRight, Heart, Award, Eye, Users, Calendar } from "lucide-react";
 import heroImage from "@/assets/hero-gifts.jpg";
 import realEstateImg from "@/assets/real-estate-gift.jpg";
 import apparelImg from "@/assets/branded-apparel.jpg";
