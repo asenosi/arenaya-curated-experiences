@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { FileText, Leaf } from "lucide-react";
+import { Leaf } from "lucide-react";
 
 const processSteps = [
   {
@@ -58,9 +57,7 @@ export default function Process() {
 
   const sections = [
     { id: "steps", title: "Steps" },
-    { id: "packaging", title: "Packaging" },
     { id: "sustainability", title: "Sustainability" },
-    { id: "timeline", title: "Timeline" },
   ] as const;
 
   useEffect(() => {
@@ -75,56 +72,30 @@ export default function Process() {
     }
   }, [location]);
 
+  // Scroll spy (position based, avoids flickering)
   useEffect(() => {
-    const els = sections
-      .map((s) => ({ id: s.id, el: document.getElementById(s.id) as HTMLElement | null }))
-      .filter((x): x is { id: typeof sections[number]['id']; el: HTMLElement } => !!x.el);
-    if (els.length === 0) return;
-
-    // Ensure a sensible default selection
-    if (!activeId) setActiveId(els[0].id);
-
-    const pickClosest = () => {
-      const headerOffset = 120;
-      let best: { id: string; dist: number } | null = null;
-      els.forEach(({ id, el }) => {
-        const top = el.getBoundingClientRect().top - headerOffset;
-        // prefer the section whose top is nearest to header (<=0 means passed the header)
-        const dist = top <= 0 ? Math.abs(top) : top + 1000; // bias toward sections already reached
-        if (!best || dist < best.dist) best = { id, dist };
-      });
-      if (best) setActiveId(best.id);
+    const onScroll = () => {
+      const threshold = 200;
+      let current: string = sections[0].id;
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top - threshold <= 0) {
+          current = s.id;
+        }
+      }
+      setActiveId((prev) => (prev === current ? prev : current));
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          const id = visible[0].target.id;
-          setActiveId(id);
-          try {
-            window.history.replaceState(null, "", `#${id}`);
-          } catch {}
-        } else {
-          // Fallback when nothing meets threshold (e.g., first section)
-          pickClosest();
-        }
-      },
-      { rootMargin: "-100px 0px -50% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
-    );
-    els.forEach(({ el }) => observer.observe(el));
-
-    // Also update on scroll for robustness
-    const onScroll = () => pickClosest();
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
+    window.addEventListener("resize", onScroll);
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
+
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
@@ -142,8 +113,17 @@ export default function Process() {
         </div>
       </section>
 
-      {/* Sticky Sub-Nav */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md border-b border-border lg:h-14">
+      {/* Sticky title + sub-nav */}
+      <div className="sticky top-16 lg:top-20 z-40">
+        <div className="bg-card/95 backdrop-blur-md border-y border-border shadow-sm">
+          <div className="container mx-auto px-4 lg:px-8 h-11 lg:h-12 flex items-center">
+            <span className="text-xs lg:text-sm tracking-[0.2em] uppercase text-muted-foreground">
+              Our Process
+            </span>
+          </div>
+        </div>
+      <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-sm lg:h-14">
+
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex overflow-x-auto py-4 lg:py-0 space-x-2 lg:space-x-4 scrollbar-hide">
             {sections.map((s) => (
@@ -174,9 +154,11 @@ export default function Process() {
           </div>
         </div>
       </nav>
+      </div>
+
 
       {/* Process Steps */}
-      <section id="steps" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="steps" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-16">
             {processSteps.map((step, index) => (
@@ -219,51 +201,8 @@ export default function Process() {
         </div>
       </section>
 
-      {/* Packaging Selection */}
-      <section id="packaging" className="py-16 lg:py-24 bg-card scroll-mt-32">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                Packaging Selection
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We curate packaging that aligns with the occasion and your brand identity.
-              </p>
-            </div>
-            <Card>
-              <CardContent className="p-8 lg:p-12 space-y-6">
-                <p className="text-lg text-foreground leading-relaxed">
-                  Packaging is the recipient's first impression—it needs to be accurate, elegant, and professional.
-                  We select materials, ribbons, tissue, and presentation boxes that enhance the unboxing experience
-                  and reinforce your brand values.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground">Premium Materials</h3>
-                    <p className="text-muted-foreground">Satin ribbons, textured papers, and luxury boxes</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground">Brand Alignment</h3>
-                    <p className="text-muted-foreground">Colors and finishes that match your identity</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground">Secure Presentation</h3>
-                    <p className="text-muted-foreground">Protective packing for safe transit</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground">Attention to Detail</h3>
-                    <p className="text-muted-foreground">Every element curated for impact</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Sustainability */}
-      <section id="sustainability" className="py-16 lg:py-24 scroll-mt-32">
+      <section id="sustainability" className="py-16 lg:py-24 scroll-mt-40 lg:scroll-mt-52">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Card className="bg-muted/30 border-2 border-secondary/20">
@@ -284,27 +223,6 @@ export default function Process() {
         </div>
       </section>
 
-      {/* Timeline & Download */}
-      <section id="timeline" className="py-16 lg:py-24 bg-card scroll-mt-32">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-heading font-bold text-foreground">
-                Typical Timeline
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Ready in as little as 7–14 working days after approval, depending on complexity and quantities.
-              </p>
-            </div>
-            <Button asChild size="lg" variant="outline" className="gap-2">
-              <a href="/assets/Arenaya_Process.pdf" download>
-                <FileText className="w-5 h-5" />
-                Download Process Guide (PDF)
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
