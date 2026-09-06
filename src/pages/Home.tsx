@@ -114,8 +114,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Arenaya Corporate Gifting | Premium Corporate Gifts South Africa"
-        description="Turnkey corporate gifting partner in South Africa: curated premium gifts, branded apparel and elegant packaging, delivered on time."
+        title="Arenaya Corporate Gifting | Premium Corporate Gifts Nationwide"
+        description="Turnkey corporate gifting partner nationwide: curated premium gifts, branded apparel and elegant packaging, delivered on time."
         path="/"
         jsonLd={[
           {
@@ -158,7 +158,7 @@ export default function Home() {
               Curated Corporate Gifting & Branding
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Premium gifts, elegant packaging, and reliable delivery across South Africa.
+              Premium gifts, elegant packaging, and reliable delivery nationwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
