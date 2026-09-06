@@ -94,9 +94,6 @@ export default function Footer() {
                 <Linkedin size={20} />
               </a>
             </div>
-            <p className="text-sm text-primary-foreground/70 pt-4">
-              Serving South Africa & Eswatini
-            </p>
           </div>
         </div>
 
