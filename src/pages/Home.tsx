@@ -138,14 +138,14 @@ export default function Home() {
               Curated Corporate Gifting & Branding
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Premium gifts, elegant packaging, and reliable delivery across SA & Eswatini.
+              Premium gifts, elegant packaging, and reliable delivery nationwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8">
                 <Link to="/contact">Request a Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 text-lg px-8">
-                <a href="/assets/Arenaya_Catalogue.pdf" download>
+                <a href="/assets/Arenaya_Catalogue.pdf" target="_blank" rel="noopener noreferrer">
                   View Catalogue
                 </a>
               </Button>
